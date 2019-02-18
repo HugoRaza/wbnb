@@ -3,7 +3,7 @@ class CreateRentals < ActiveRecord::Migration[5.2]
     create_table :rentals do |t|
       t.date :start_date
       t.date :end_date
-      t.string :status
+      t.string :status, default: "pending"
       t.text :message
       t.float :total_price
       t.references :user, foreign_key: true

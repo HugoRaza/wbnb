@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_18_161725) do
+ActiveRecord::Schema.define(version: 2019_02_18_162906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "rentals", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.string "status", default: "pending"
+    t.text "message"
+    t.float "total_price"
+    t.bigint "user_id"
+    t.bigint "vehicle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_rentals_on_user_id"
+    t.index ["vehicle_id"], name: "index_rentals_on_vehicle_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,6 +46,15 @@ ActiveRecord::Schema.define(version: 2019_02_18_161725) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vehicle_reviews", force: :cascade do |t|
+    t.text "description"
+    t.integer "rating"
+    t.bigint "rental_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rental_id"], name: "index_vehicle_reviews_on_rental_id"
+  end
+
   create_table "vehicles", force: :cascade do |t|
     t.string "name"
     t.string "category"
@@ -45,5 +68,8 @@ ActiveRecord::Schema.define(version: 2019_02_18_161725) do
     t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
+  add_foreign_key "rentals", "users"
+  add_foreign_key "rentals", "vehicles"
+  add_foreign_key "vehicle_reviews", "rentals"
   add_foreign_key "vehicles", "users"
 end
