@@ -1,16 +1,17 @@
 require 'faker'
 
 def user_for_rental(vehicle)
-  id = User.ids.sample(1).first
-  # user_for_rental(vehicle) until id != vehicle.user_id
+  id = User.ids.sample
+    user_for_rental(vehicle) if id == vehicle.user_id
+    # user_for_rental(vehicle) if id == vehicle.user_id
   return id
 end
 
 puts 'Cleaning database...'
-VehicleReview.destroy_all
-Rental.destroy_all
-Vehicle.destroy_all
 User.destroy_all
+# Vehicle.destroy_all
+# Rental.destroy_all
+# VehicleReview.destroy_all
 
 puts 'Creating 5 fake users...'
 user_attributes = []
@@ -37,7 +38,7 @@ User.all.each do |user|
   3.times do
   vehicle_attributes << {
     name: Faker::Vehicle.manufacture,
-    category: "bike",
+    category: %w[bike wheelbarrow scooter skateboard animal roller fantasy other].sample,
     description: Faker::ChuckNorris.fact,
     image: "https://loremflickr.com/320/240/vehicle?id=#{id}",
     price: rand(1..100),
@@ -62,12 +63,20 @@ Vehicle.all.each do |vehicle|
     user_id: user_for_rental(vehicle),
     vehicle_id: vehicle.id
   }
+  rental_attr << {
+  start_date: "2019-#{rand(1..6)}-#{rand(1..28)}",
+  end_date: "2019-#{rand(7..12)}-#{rand(1..28)}",
+  message: Faker::ChuckNorris.fact,
+  total_price: rand(1..1000),
+  user_id: user_for_rental(vehicle),
+  vehicle_id: vehicle.id
+  }
 end
 
 Rental.create!(rental_attr)
 puts "Rentals created"
 
-puts "Creating 1 review per rental"
+puts "Creating review for rental with id even"
 review_attr = []
 Rental.all.each do |rental|
   review_attr << {
