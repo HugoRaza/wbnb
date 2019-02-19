@@ -5,8 +5,16 @@
 <%= image_tag @rental.vehicle.image, alt: "Vehicle image" %>
 <%= @rental.total_price %>
 
+<% if !@rental.vehicle_review %>
   <% if @rental.status == 'accepted' && @rental.end_date < Date.today %>
-    <%= link_to 'Add a review', rental_path(@rental) %>
+    <%= simple_form_for [@rental, @vehicle_review] do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= f.input :rating %>
+      <%= f.input :description %>
+      <%= f.button :submit %>
+    <% end %>
+
   <% elsif @rental.status == 'accepted' %>
     Accepted
   <% elsif @rental.status == 'declined' || @rental.end_date < Date.today %>
@@ -14,3 +22,7 @@
   <% else %>
     Pending
   <% end %>
+
+<% else %>
+  You already left a comment
+<% end %>
