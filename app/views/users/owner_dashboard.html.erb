@@ -2,10 +2,6 @@
 
 <h2>Reservations</h2>
 
-<% if @message %>
-  <%= @message %>
-<% end %>
-
 <% if @user.vehicle_rentals.empty? %>
   <p>No reservations yet</p>
 <% else %>
