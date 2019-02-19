@@ -3,6 +3,7 @@ class RentalsController < ApplicationController
   end
 
   def index
+    @rentals = Rental.where(user: current_user)
   end
 
   def show
