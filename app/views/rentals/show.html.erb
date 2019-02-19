@@ -1,4 +1,5 @@
 <h1><%= link_to @rental.vehicle.name, vehicle_path(@rental.vehicle) %></h1>
+
 <p>From: <%= @rental.start_date %></p>
 <p>To:   <%= @rental.end_date %></p>
 <%= image_tag @rental.vehicle.image, alt: "Vehicle image" %>
