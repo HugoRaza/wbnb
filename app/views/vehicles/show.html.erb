@@ -10,8 +10,13 @@
     <% @vehicle.vehicle_reviews.each do |review| %>
       <div class="container">
         <div class="card-review">
+          <h2>description</h2>
           <p><%= review.description %></p>
+          <h2>rating</h2>
           <p><%= review.rating %></p>
+          <h2>name</h2>
+          <p><%= review.rental.user.first_name %></p>
+          <img src=<%= review.rental.user.profile_picture %> alt="" style="width: 250px">
         </div>
       </div>
     <% end %>

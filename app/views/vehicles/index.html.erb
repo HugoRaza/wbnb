@@ -1,15 +1,13 @@
 <h1>Vehicle Index</h1>
 
 <% @vehicles.each do |vehicle| %>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-6 col-sm-8>
-      <div class="card-vehicle">
-        <img src= <%= vehicle.image %> alt="">
-         <%= link_to "#{vehicle.name} (#{vehicle.price} €)", vehicle_path(vehicle) %>
-        <p><%= "#{vehicle.location}" %></p>
-      </div>
-    </div>
-  </div>
-</div>
+  <img src= <%= vehicle.image %> alt="">
+   <%= link_to "#{vehicle.name} (#{vehicle.price} €)", vehicle_path(vehicle) %>
+  <p><%= vehicle.location %></p>
+  <% sum = 0.0 %>
+  <% vehicle.vehicle_reviews.each do |review| %>
+    <% sum += review.rating %>
+  <% end %>
+  <%= "rating : #{(sum/vehicle.vehicle_reviews.length).round(1)}" %>
+  <br>
 <% end %>

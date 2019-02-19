@@ -53,7 +53,7 @@ end
 Vehicle.create!(vehicle_attributes)
 puts "Vehicles created"
 
-puts "Creating 2 rental per vehicle"
+puts "Creating 3 rental per vehicle"
 rental_attr = []
 user_ids = User.ids
 Vehicle.all.each do |vehicle|
@@ -64,6 +64,14 @@ Vehicle.all.each do |vehicle|
     total_price: rand(1..1000),
     user_id: user_for_rental(vehicle),
     vehicle_id: vehicle.id
+  }
+  rental_attr << {
+  start_date: "2019-#{rand(1..6)}-#{rand(1..28)}",
+  end_date: "2019-#{rand(7..12)}-#{rand(1..28)}",
+  message: Faker::ChuckNorris.fact,
+  total_price: rand(1..1000),
+  user_id: user_for_rental(vehicle),
+  vehicle_id: vehicle.id
   }
   rental_attr << {
   start_date: "2019-#{rand(1..6)}-#{rand(1..28)}",
@@ -89,6 +97,6 @@ Rental.all.each do |rental|
 end
 
 VehicleReview.create!(review_attr)
-puts "Reviews created"
+puts "review created"
 
 puts 'Finished!'
