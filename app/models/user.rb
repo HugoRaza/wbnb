@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :vehicles, dependent: :destroy
   has_many :rentals, dependent: :destroy
+  has_many :vehicle_rentals, through: :vehicles, class_name: 'Rental'
 end
