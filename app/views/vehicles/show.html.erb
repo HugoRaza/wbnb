@@ -1,2 +1,20 @@
-<h1>Vehicles#show</h1>
-<p>Find me in app/views/vehicles/show.html.erb</p>
+<h1 style="margin-left: 150px"><%= @vehicle.name %></h1>
+
+<div class="container">
+  <div class="card-vehicle">
+    <img src= <%= @vehicle.image %> alt="vehicle">
+    <p> <%= " #{@vehicle.price} €" %> </p>
+    <p> <%= @vehicle.description %> </p>
+    <p> <%= @vehicle.category %> </p>
+    <p> <%= @vehicle.user.first_name %> </p>
+    <% @vehicle.vehicle_reviews.each do |review| %>
+      <div class="container">
+        <div class="card-review">
+          <p><%= review.description %></p>
+          <p><%= review.rating %></p>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

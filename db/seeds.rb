@@ -2,9 +2,11 @@ require 'faker'
 
 def user_for_rental(vehicle)
   id = User.ids.sample
-    user_for_rental(vehicle) if id == vehicle.user_id
-    # user_for_rental(vehicle) if id == vehicle.user_id
-  return id
+    if id == vehicle.user_id
+      user_for_rental(vehicle)
+    else
+      return id
+    end
 end
 
 puts 'Cleaning database...'
