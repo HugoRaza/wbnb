@@ -1,2 +1,11 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%=image_path("wheelbarrow-banner.jpg")%>);">
+  <div class="container">
+    <h1>Wbnb offers <strong>great vehicles</strong> to <strong>great people</strong>!</h1>
+    <p>Change your life and rent a wheelbarrow around the world.</p>
+    <a class="btn btn-flat" href="#">Apply now</a>
+  </div>
+</div>
+<br>
+<div class="container">
+  <%= render "shared/list", vehicles: @vehicles %>
+</div>
