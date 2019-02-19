@@ -1,13 +1,10 @@
 <h1>Vehicle Index</h1>
 
 <% @vehicles.each do |vehicle| %>
-  <img src= <%= vehicle.image %> alt="">
-   <%= link_to "#{vehicle.name} (#{vehicle.price} €)", vehicle_path(vehicle) %>
+  <%= image_tag vehicle.image %>
+  <%= link_to "#{vehicle.name} (#{vehicle.price} €)", vehicle_path(vehicle) %>
+  <h2>location</h2>
   <p><%= vehicle.location %></p>
-  <% sum = 0.0 %>
-  <% vehicle.vehicle_reviews.each do |review| %>
-    <% sum += review.rating %>
-  <% end %>
-  <%= "rating : #{(sum/vehicle.vehicle_reviews.length).round(1)}" %>
+  <%= "rating : #{vehicle.vehicle_reviews.average(:rating).round(1)}" %>
   <br>
 <% end %>

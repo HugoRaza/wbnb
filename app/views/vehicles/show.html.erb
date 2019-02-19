@@ -1,8 +1,10 @@
-<h1 style="margin-left: 150px"><%= @vehicle.name %></h1>
-
+<h1 style="margin-left: "><%= @vehicle.name %></h1>
+<%= link_to "retour à l'index", vehicles_path %>
+<br>
+<br>
 <div class="container">
   <div class="card-vehicle">
-    <img src= <%= @vehicle.image %> alt="vehicle">
+    <%= image_tag @vehicle.image %>
     <p> <%= " #{@vehicle.price} €" %> </p>
     <p> <%= @vehicle.description %> </p>
     <p> <%= @vehicle.category %> </p>
@@ -16,9 +18,10 @@
           <p><%= review.rating %></p>
           <h2>name</h2>
           <p><%= review.rental.user.first_name %></p>
-          <img src=<%= review.rental.user.profile_picture %> alt="" style="width: 250px">
+          <%= image_tag review.rental.user.profile_picture, alt: "User_img", style: "width: 250px;border-radius: 10px;" %>
         </div>
       </div>
+      <hr>
     <% end %>
 
   </div>
