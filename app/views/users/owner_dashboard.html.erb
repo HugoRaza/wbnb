@@ -1,2 +1,5 @@
-<h1>Users#owner_dashboard</h1>
-<p>Find me in app/views/users/owner_dashboard.html.erb</p>
+<h1>Dashboard</h1>
+<% @user.vehicles.each do |vehicle| %>
+  <p>Vehicle: <%= vehicle.name %></p>
+<% end %>
+<%= link_to 'Add new vehicle', new_vehicle_path %>
