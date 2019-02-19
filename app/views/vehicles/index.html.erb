@@ -1,2 +1,10 @@
-<h1>Vehicles#index</h1>
-<p>Find me in app/views/vehicles/index.html.erb</p>
+<h1>Vehicle Index</h1>
+
+<% @vehicles.each do |vehicle| %>
+  <%= image_tag vehicle.image %>
+  <%= link_to "#{vehicle.name} (#{vehicle.price} €)", vehicle_path(vehicle) %>
+  <h2>location</h2>
+  <p><%= vehicle.location %></p>
+  <%= "rating : #{vehicle.vehicle_reviews.average(:rating).round(1)}" %>
+  <br>
+<% end %>
