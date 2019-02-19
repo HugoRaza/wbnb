@@ -14,6 +14,9 @@ class VehiclesController < ApplicationController
   end
 
   def destroy
+    @vehicle = Vehicle.find(params[:id])
+    @vehicle.destroy
+    redirect_to owner_dashboard_path
   end
 
   def show

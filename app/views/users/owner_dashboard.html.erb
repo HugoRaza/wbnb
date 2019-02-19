@@ -1,5 +1,27 @@
 <h1>Dashboard</h1>
-<% @user.vehicles.each do |vehicle| %>
-  <p>Vehicle: <%= vehicle.name %></p>
+
+<h2>Reservations</h2>
+
+<% if @user.vehicle_rentals.empty? %>
+  <p>No reservations yet</p>
+<% else %>
+  <% @user.vehicle_rentals.each do |rental| %>
+    <%= image_tag rental.user.profile_picture, alt: "PP", style: "width: 40px;border-radius: 20px;" %>
+    <%= rental.vehicle.name %>
+    <%= rental.user.first_name %>
+    <%= rental.message %>
+    <%= rental.total_price %>
+    <br>
+  <% end %>
 <% end %>
+
+<h2>My vehicles</h2>
+
+<% @user.vehicles.each do |vehicle| %>
+  <%= image_tag vehicle.image, alt: "bike" %>
+  <%= link_to vehicle.name, vehicle_path(vehicle) %>
+  <%= link_to 'Remove', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <br>
+<% end %>
+<br>
 <%= link_to 'Add new vehicle', new_vehicle_path %>
