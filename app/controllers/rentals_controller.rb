@@ -12,9 +12,10 @@ class RentalsController < ApplicationController
     @rental = Rental.find(params[:id])
     @rental.status = params[:status]
     if @rental.save
-      redirect_to owner_dashboard_path
+      message = "Your reservation has been #{params[:status]} successfully"
     else
-      redirect_to vehicles_path
+      message = "Error, stop hacking my website!"
     end
+    redirect_to owner_dashboard_path, notice: message
   end
 end
