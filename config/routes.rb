@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  get 'vehicle_reviews/create'
-  get 'rentals/create'
-  get 'rentals/index'
-  get 'rentals/show'
-  get 'rentals/update'
   devise_for :users
 
   resources :vehicles, only: [:index, :show, :new, :create, :destroy] do
