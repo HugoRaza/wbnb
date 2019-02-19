@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  get 'vehicle_reviews/create'
-  get 'rentals/create'
-  get 'rentals/index'
-  get 'rentals/show'
-  get 'rentals/update'
   devise_for :users
 
   resources :vehicles, only: [:index, :show, :new, :create, :destroy] do
@@ -14,7 +9,7 @@ Rails.application.routes.draw do
     resources :vehicle_reviews, only: [:create]
   end
 
-  get '/owner_dashboard', to: 'user#owner_dashboard'
+  get '/owner_dashboard', to: 'users#owner_dashboard'
 
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -9,5 +9,13 @@ class RentalsController < ApplicationController
   end
 
   def update
+    @rental = Rental.find(params[:id])
+    @rental.status = params[:status]
+    if @rental.save
+      message = "Your reservation has been #{params[:status]} successfully"
+    else
+      message = "Error, stop hacking my website!"
+    end
+    redirect_to owner_dashboard_path, notice: message
   end
 end

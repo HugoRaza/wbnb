@@ -1,2 +1,15 @@
-<h1>Vehicles#new</h1>
-<p>Find me in app/views/vehicles/new.html.erb</p>
+<h1>Create a new vehicle</h1>
+
+  <%= simple_form_for @vehicle do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <%= f.input :name %>
+    <%= f.input :category, collection: %w[bike wheelbarrow scooter skateboard animal roller fantasy other] %>
+    <%= f.input :description %>
+    <%= f.input :price %>
+    <%= f.input :location %>
+    <%= f.input :image %>
+    <%= f.button :submit %>
+  <% end %>
+  <hr>
+  <%= link_to 'Back', owner_dashboard_path %>
