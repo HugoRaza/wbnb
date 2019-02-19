@@ -38,15 +38,15 @@ vehicle_attributes = []
 id = 1
 User.all.each do |user|
   3.times do
-  vehicle_attributes << {
-    name: Faker::Vehicle.manufacture,
-    category: %w[bike wheelbarrow scooter skateboard animal roller fantasy other].sample,
-    description: Faker::ChuckNorris.fact,
-    image: "https://loremflickr.com/320/240/vehicle?id=#{id}",
-    price: rand(1..100),
-    location: Faker::Address.city,
-    user_id: user.id
-  }
+    vehicle_attributes << {
+      name: Faker::Vehicle.manufacture,
+      category: %w[bike wheelbarrow scooter skateboard animal roller fantasy other].sample,
+      description: Faker::ChuckNorris.fact,
+      image: "https://loremflickr.com/320/240/vehicle?id=#{id}",
+      price: rand(1..100),
+      location: Faker::Address.city,
+      user_id: user.id
+    }
   id += 1
   end
 end
