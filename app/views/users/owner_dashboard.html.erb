@@ -11,6 +11,14 @@
     <%= rental.user.first_name %>
     <%= rental.message %>
     <%= rental.total_price %>
+    <% if rental.status == 'pending' %>
+      <%= link_to 'Accept', rental_path(rental, status: 'accepted'), data: { confirm: 'Are you sure?' }, method: :patch %>
+      <%= link_to 'Decline', rental_path(rental, status: 'declined'), data: { confirm: 'Are you sure?' }, method: :patch %>
+    <% elsif rental.status == 'accepted' %>
+      Accepted
+    <% elsif rental.status == 'declined' %>
+      Declined
+    <% end %>
     <br>
   <% end %>
 <% end %>
@@ -18,7 +26,7 @@
 <h2>My vehicles</h2>
 
 <% @user.vehicles.each do |vehicle| %>
-  <%= image_tag vehicle.image, alt: "bike" %>
+  <%= image_tag vehicle.image, alt: "bike", style: "width: 40px;border-radius: 20px;" %>
   <%= link_to vehicle.name, vehicle_path(vehicle) %>
   <%= link_to 'Remove', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %>
   <br>

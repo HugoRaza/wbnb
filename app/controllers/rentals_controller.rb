@@ -9,5 +9,12 @@ class RentalsController < ApplicationController
   end
 
   def update
+    @rental = Rental.find(params[:id])
+    @rental.status = params[:status]
+    if @rental.save
+      redirect_to owner_dashboard_path
+    else
+      redirect_to vehicles_path
+    end
   end
 end
