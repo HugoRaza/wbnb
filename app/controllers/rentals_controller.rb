@@ -31,6 +31,16 @@ class RentalsController < ApplicationController
     redirect_to owner_dashboard_path, notice: message
   end
 
+  def destroy
+    @rental = Rental.find(params[:id])
+    if @rental.destroy
+      message = "You justed canceled your rental"
+    else
+      message = "You can't cancel this rental"
+    end
+    redirect_to rentals_path, notice: message
+  end
+
   private
 
   def rental_params
