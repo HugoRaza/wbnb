@@ -1,42 +1,44 @@
-<h1>Dashboard</h1>
-
-<h2>Reservations</h2>
-
-<% if @user.vehicle_rentals.empty? %>
-  <p>No reservations yet</p>
-<% else %>
-  <% @user.vehicle_rentals.each do |rental| %>
-    <%= image_tag rental.user.profile_picture, alt: "PP", style: "width: 40px;border-radius: 20px;" %>
-    <%= rental.vehicle.name %>
-    <%= rental.user.first_name %>
-    <%= rental.message %>
-    <%= rental.total_price %>
-    <% if rental.status == 'pending' %>
-      <%= link_to 'Accept', rental_path(rental, status: 'accepted'), data: { confirm: 'Are you sure?' }, method: :patch %>
-      <%= link_to 'Decline', rental_path(rental, status: 'declined'), data: { confirm: 'Are you sure?' }, method: :patch %>
-    <% elsif rental.status == 'accepted' %>
-      Accepted
-    <% elsif rental.status == 'declined' %>
-      Declined
+<div class="main">
+  <h1>Dashboard</h1>
+  
+  <h2>Reservations</h2>
+  
+  <% if @user.vehicle_rentals.empty? %>
+    <p>No reservations yet</p>
+  <% else %>
+    <% @user.vehicle_rentals.each do |rental| %>
+      <%= image_tag rental.user.profile_picture, alt: "PP", style: "width: 40px;border-radius: 20px;" %>
+      <%= rental.vehicle.name %>
+      <%= rental.user.first_name %>
+      <%= rental.message %>
+      <%= rental.total_price %>
+      <% if rental.status == 'pending' %>
+        <%= link_to 'Accept', rental_path(rental, status: 'accepted'), data: { confirm: 'Are you sure?' }, method: :patch %>
+        <%= link_to 'Decline', rental_path(rental, status: 'declined'), data: { confirm: 'Are you sure?' }, method: :patch %>
+      <% elsif rental.status == 'accepted' %>
+        Accepted
+      <% elsif rental.status == 'declined' %>
+        Declined
+      <% end %>
+      <br>
     <% end %>
+  <% end %>
+  
+  <h2>My vehicles</h2>
+  
+  <% @user.vehicles.each do |vehicle| %>
+  
+    <% if vehicle.image.to_s.include?("cloudinary") %>
+      <%= cl_image_tag vehicle.image, alt: "bike", style: "width: 40px;border-radius: 20px;"  %>
+    <% else %>
+      <%= image_tag vehicle.image.file.filename, alt: "bike", style: "width: 40px;border-radius: 20px;"  %>
+    <% end %>
+  
+    <%= link_to vehicle.name, vehicle_path(vehicle) %>
+    <%= link_to 'Edit', edit_vehicle_path(vehicle) %>
+    <%= link_to 'Remove', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %>
     <br>
   <% end %>
-<% end %>
-
-<h2>My vehicles</h2>
-
-<% @user.vehicles.each do |vehicle| %>
-
-  <% if vehicle.image.to_s.include?("cloudinary") %>
-    <%= cl_image_tag vehicle.image, alt: "bike", style: "width: 40px;border-radius: 20px;"  %>
-  <% else %>
-    <%= image_tag vehicle.image.file.filename, alt: "bike", style: "width: 40px;border-radius: 20px;"  %>
-  <% end %>
-
-  <%= link_to vehicle.name, vehicle_path(vehicle) %>
-  <%= link_to 'Edit', edit_vehicle_path(vehicle) %>
-  <%= link_to 'Remove', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %>
   <br>
-<% end %>
-<br>
-<%= link_to 'Add new vehicle', new_vehicle_path %>
+  <%= link_to 'Add new vehicle', new_vehicle_path %>
+</div>
