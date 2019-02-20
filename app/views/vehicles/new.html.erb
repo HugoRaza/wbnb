@@ -7,9 +7,10 @@
     <%= f.input :category, collection: %w[bike wheelbarrow scooter skateboard animal roller fantasy other] %>
     <%= f.input :description %>
     <%= f.input :price %>
-    <%= f.input :location %>
+    <%= f.input :location, input_html: { id: :autocompletion } %>
     <%= f.input :image %>
     <%= f.button :submit %>
   <% end %>
   <hr>
   <%= link_to 'Back', owner_dashboard_path %>
+
