@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  
+
   resources :users, only: [:show, :edit, :update ]
 
   get :my_profile, to: 'users#my_profile'
 
-  resources :vehicles, only: [:index, :show, :new, :create, :destroy] do
+  resources :vehicles do
     resources :rentals, only: [:create]
   end
 
