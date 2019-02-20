@@ -15,6 +15,6 @@ class Rental < ApplicationRecord
   end
 
   def date_rule
-    errors.add(:end_date, "End date must be greater than start day") if end_date < start_date
+    errors.add(:end_date, "End date must be greater than start date") if end_date < start_date
   end
 end
