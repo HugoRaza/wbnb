@@ -6,6 +6,9 @@
   padding: 16px 24px;
   font-size: 16px;
   border-bottom: 1px rgb(230, 230, 230) solid;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
 }
 
 .navbar-lewagon .brand {
