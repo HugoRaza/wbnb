@@ -7,7 +7,7 @@ class RentalsController < ApplicationController
   end
 
   def show
-    @rental = Rental.find(params[:id])
+    @rental = Rental.where(user: current_user).find(params[:id])
     @vehicle_review = VehicleReview.new
   end
 

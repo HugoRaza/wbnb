@@ -1,6 +1,6 @@
 class VehicleReviewsController < ApplicationController
   def create
-    @rental = Rental.find(params[:rental_id])
+    @rental = Rental.where(user: current_user).find(params[:id])
     @vehicle_review = VehicleReview.new(vehicle_review_params)
     @vehicle_review.rental = @rental
     @vehicle_review.save
