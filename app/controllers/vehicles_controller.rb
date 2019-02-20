@@ -15,6 +15,20 @@ class VehiclesController < ApplicationController
     end
   end
 
+  def edit
+    @vehicle = Vehicle.where(user: current_user).find(params[:id])
+  end
+
+  def update
+    @vehicle = Vehicle.where(user: current_user).find(params[:id])
+    @vehicle.update(vehicle_params)
+    if @vehicle.save
+      redirect_to owner_dashboard_path
+    else
+      render :new
+    end
+  end
+
   def destroy
     @vehicle = Vehicle.find(params[:id])
     @vehicle.destroy

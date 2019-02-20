@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :vehicles, only: [:index, :show, :new, :create, :destroy] do
+  resources :vehicles do
     resources :rentals, only: [:create]
   end
 
