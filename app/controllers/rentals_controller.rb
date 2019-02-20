@@ -3,9 +3,12 @@ class RentalsController < ApplicationController
   end
 
   def index
+    @rentals = Rental.where(user: current_user)
   end
 
   def show
+    @rental = Rental.where(user: current_user).find(params[:id])
+    @vehicle_review = VehicleReview.new
   end
 
   def update
