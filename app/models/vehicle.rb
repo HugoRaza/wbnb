@@ -1,4 +1,6 @@
 class Vehicle < ApplicationRecord
+  mount_uploader :image, PhotoUploader
+
   belongs_to :user
   has_many :rentals, dependent: :destroy
   has_many :vehicle_reviews, through: :rentals
