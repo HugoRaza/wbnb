@@ -28,6 +28,7 @@
 <% @user.vehicles.each do |vehicle| %>
   <%= image_tag vehicle.image, alt: "bike", style: "width: 40px;border-radius: 20px;" %>
   <%= link_to vehicle.name, vehicle_path(vehicle) %>
+  <%= link_to 'Edit', edit_vehicle_path(vehicle) %>
   <%= link_to 'Remove', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %>
   <br>
 <% end %>
