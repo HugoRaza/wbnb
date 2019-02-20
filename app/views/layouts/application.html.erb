@@ -27,9 +27,11 @@
           <div class="dropdown">
             <img src='https://pickaface.net/gallery/avatar/20140912_220245_2176_toto.png' class="avatar dropdown-toggle"
               id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <i class="fas fa-sign-out-alt"></i> <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item"  %>
-            </div>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li>
+                <i class="fas fa-sign-out-alt"></i> <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item"  %>
+              </li>
+            </ul>
           <% else %>
             <%= link_to "Login", new_user_session_path, class: "navbar-lewagon-link" %>
           <% end %>
@@ -37,7 +39,7 @@
       </div>
 
       <!-- displayed on phone / tablet -->
-      <div class="navbar-lewagon-actions d-block d-sm-none">
+      <!-- <div class="navbar-lewagon-actions d-block d-sm-none">
         <div class="dropdown">
           <i class="fas fa-bars" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"></i>
@@ -50,7 +52,7 @@
             <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log out</a>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <% if notice %>
