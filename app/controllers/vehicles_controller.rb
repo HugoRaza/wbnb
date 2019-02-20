@@ -24,12 +24,16 @@ class VehiclesController < ApplicationController
   end
 
   def index
-    @vehicles = Vehicle.all
+    if params[:term].present?
+      @vehicles = Vehicle.where('name ILIKE ?', "%#{params[:term]}%")
+    else
+      @vehicles = Vehicle.all
+    end
   end
 
   private
 
   def vehicle_params
-    params.require(:vehicle).permit(:name, :category, :description, :price, :location, :image)
+    params.require(:vehicle).permit(:name, :category, :description, :price, :location, :image, :term)
   end
 end
