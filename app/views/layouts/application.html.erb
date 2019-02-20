@@ -7,18 +7,15 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
+
     <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
   </head>
   <body>
 
     <div class="navbar-lewagon">
       <a href="/">
-        <%= image_tag "wheelbarrow-icon.png", class: "brand" %>
+        <%= cl_image_tag "o42xfhdeqgp78fjxlcu4", class: "brand" %>
       </a>
 
       <!-- displayed on laptops -->
@@ -33,6 +30,7 @@
             <img src='https://pickaface.net/gallery/avatar/20140912_220245_2176_toto.png' class="avatar dropdown-toggle"
               id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <i class="fas fa-user-circle"></i> <%= link_to "My Profile", my_profile_path, class: "dropdown-item"  %>
               <i class="fas fa-sign-out-alt"></i> <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item"  %>
             </div>
           <% else %>
@@ -42,7 +40,7 @@
       </div>
 
       <!-- displayed on phone / tablet -->
-      <div class="navbar-lewagon-actions d-block d-sm-none">
+      <!-- <div class="navbar-lewagon-actions d-block d-sm-none">
         <div class="dropdown">
           <i class="fas fa-bars" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false"></i>
@@ -55,7 +53,7 @@
             <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log out</a>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <% if notice %>

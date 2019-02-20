@@ -2,8 +2,12 @@
 
 <p>From: <%= @rental.start_date %></p>
 <p>To:   <%= @rental.end_date %></p>
-<%= image_tag @rental.vehicle.image, alt: "Vehicle image" %>
-<%= @rental.total_price %>
+  <% if vehicle.image.to_s.include?("cloudinary") %>
+    <%= cl_image_tag vehicle.image %>
+  <% else %>
+    <%= image_tag vehicle.image.file.filename %>
+  <% end %>
+  <%= @rental.total_price %>
 
 <% if !@rental.vehicle_review %>
   <% if @rental.status == 'accepted' && @rental.end_date < Date.today %>

@@ -1,28 +1,56 @@
-<h1 style="margin-left: "><%= @vehicle.name %></h1>
-<%= link_to "retour à l'index", vehicles_path %>
+<h1><%= @vehicle.name %></h1>
+<%= link_to "Back to index", vehicles_path %>
 <br>
 <br>
-<div class="container">
-  <div class="card-vehicle">
-    <%= image_tag @vehicle.image %>
-    <p> <%= " #{@vehicle.price} €" %> </p>
-    <p> <%= @vehicle.description %> </p>
-    <p> <%= @vehicle.category %> </p>
-    <p> <%= @vehicle.user.first_name %> </p>
-    <% @vehicle.vehicle_reviews.each do |review| %>
-      <div class="container">
-        <div class="card-review">
-          <h2>description</h2>
-          <p><%= review.description %></p>
-          <h2>rating</h2>
-          <p><%= review.rating %></p>
-          <h2>name</h2>
-          <p><%= review.rental.user.first_name %></p>
-          <%= image_tag review.rental.user.profile_picture, alt: "User_img", style: "width: 250px;border-radius: 10px;" %>
+
+<div>
+  <% if @vehicle.image.to_s.include?("cloudinary") %>
+    <%= cl_image_tag @vehicle.image %>
+  <% else %>
+    <%= image_tag @vehicle.image.file.filename %>
+  <% end %>
+  
+  <p> <%= @vehicle.description %> </p>
+  <p> <%= @vehicle.category %> </p>
+  <p> <%= @vehicle.user.first_name %> </p>
+  <hr>
+  <% @vehicle.vehicle_reviews.each do |review| %>
+    <h2>description</h2>
+    <p><%= review.description %></p>
+    <h2>rating</h2>
+    <p><%= review.rating %></p>
+    <h2>name</h2>
+    <p><%= review.rental.user.first_name %></p>
+    <%= image_tag review.rental.user.profile_picture, alt: "User_img", style: "width: 250px;border-radius: 10px;" %>
+    <hr>
+  <% end %>
+</div>
+
+<% unless @vehicle.user == current_user %>
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Ask for rental!
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Rental details</h4>
+        </div>
+        <div class="modal-body">
+          <p> <%= @vehicle.price %>€ per day </p>
+          <%= simple_form_for [@vehicle, @rental] do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+            <%= f.input :start_date %>
+            <%= f.input :end_date %>
+            <%= f.input :message %>
+            <%= f.button :submit %>
+          <% end %>
         </div>
       </div>
-      <hr>
-    <% end %>
-
+    </div>
   </div>
-</div>
+<% end %>
