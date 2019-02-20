@@ -24,6 +24,15 @@ class VehiclesController < ApplicationController
   end
 
   def index
+    @vehicles = Vehicle.where.not(latitude: nil, longitude: nil)
+
+    @markers = @vehicles.map do |flat|
+      {
+        lng: flat.longitude,
+        lat: flat.latitude
+      }
+    end
+
     if params[:term].present?
       @vehicles = Vehicle.where('name ILIKE ?', "%#{params[:term]}%")
     else
