@@ -5,19 +5,18 @@
   <%= link_to "#{vehicle.name} (#{vehicle.price} €)", vehicle_path(vehicle) %>
   <h2>location</h2>
   <p><%= vehicle.location %></p>
-  <p><%= vehicle.latitude %></p>
-  <p><%= vehicle.longitude %></p>
   <% if vehicle.vehicle_reviews.average(:rating) %>
     <%= "rating: #{vehicle.vehicle_reviews.average(:rating).round(1)}" %>
   <% else %>
     <%= "rating: none" %>
+    <br><br>
   <% end %>
 <% end %>
 
 <div
   id="map"
-  style="width: 100%;
-  height: 600px;"
+  style="width: 50%;
+  height: 300px;"
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
   data-markers="<%= @markers.to_json %>"
 ></div>
