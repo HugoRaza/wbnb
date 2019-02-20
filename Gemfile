@@ -18,6 +18,7 @@ gem 'webpacker'
 
 gem 'devise'
 gem 'cloudinary', '~> 1.9.1'
+gem 'carrierwave', '~> 1.2'
 
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 

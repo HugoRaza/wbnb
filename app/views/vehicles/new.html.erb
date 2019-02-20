@@ -9,6 +9,7 @@
     <%= f.input :price %>
     <%= f.input :location, input_html: { id: :autocompletion } %>
     <%= f.input :image %>
+    <%= f.input :image_cache, as: :hidden %>
     <%= f.button :submit %>
   <% end %>
   <hr>
