@@ -44,7 +44,7 @@ User.all.each do |user|
       description: Faker::ChuckNorris.fact,
       image: "https://loremflickr.com/320/240/vehicle?id=#{id}",
       price: rand(1..100),
-      location: Faker::Address.city,
+      location: Faker::Address.country,
       user_id: user.id
     }
   id += 1

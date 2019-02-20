@@ -46,6 +46,15 @@ class VehiclesController < ApplicationController
     else
       @vehicles = Vehicle.all
     end
+
+    @vehicles.where.not(latitude: nil, longitude: nil)
+    @markers = @vehicles.map do |vehicle|
+      {
+        lng: vehicle.longitude,
+        lat: vehicle.latitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { vehicle: vehicle })
+      }
+    end
   end
 
   private
