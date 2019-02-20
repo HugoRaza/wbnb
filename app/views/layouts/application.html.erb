@@ -23,7 +23,7 @@
 
       <!-- displayed on laptops -->
       <div class="navbar-lewagon-actions d-none d-sm-flex">
-        
+
         <% if user_signed_in? %>
           <a href="/owner_dashboard" class="navbar-lewagon-link">My wheelbarrows</a>
           <div class="badge-container">
@@ -33,6 +33,7 @@
             <img src='https://pickaface.net/gallery/avatar/20140912_220245_2176_toto.png' class="avatar dropdown-toggle"
               id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <i class="fas fa-user-circle"></i> <%= link_to "My Profile", my_profile_path, class: "dropdown-item"  %>
               <i class="fas fa-sign-out-alt"></i> <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item"  %>
             </div>
           <% else %>
