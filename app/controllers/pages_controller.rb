@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @vehicles = Vehicle.joins(:rentals).joins(:vehicle_reviews).where("vehicle_reviews.rating >= 4").distinct
+    # top5 vehicles with best average rating
+    @vehicles = Vehicle.select('vehicles.*, avg(vehicle_reviews.rating) as average').joins(:rentals).joins(:vehicle_reviews).group('vehicles.id').order('average desc').limit(5)
   end
 end
