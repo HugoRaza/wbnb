@@ -1,30 +1,74 @@
 <div class="main">
-  <h1><%= @vehicle.name %></h1>
   <%= link_to "Back to index", vehicles_path %>
   <br>
   <br>
 
-  <div>
-    <%= cl_image_tag @vehicle.image %>
-
-    <p> <%= @vehicle.description %> </p>
-    <p> <%= @vehicle.category %> </p>
-    <p> <%= @vehicle.user.first_name %> </p>
-    <hr>
-
-    <% @vehicle.vehicle_reviews.each do |review| %>
-      <h2>description</h2>
-      <p><%= review.description %></p>
-      <h2>rating</h2>
-      <p><%= review.rating %></p>
-      <h2>name</h2>
-      <p><%= review.rental.user.first_name %></p>
-      <% img_url = @vehicle.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
-      <%= image_tag img_url, height: 200, width: 200, crop: :fill  %>
-      <hr>
-    <% end %>
+  <div class="card-show-vehicle" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @vehicle.image %>);">
+    <div class="card-info">
+      <div class="show-rating1">
+        <%= "#{@vehicle.vehicle_reviews.average(:rating).round(1)}" %>
+        <div class="rating1"> <i class="fas fa-star"></i> </div>
+      </div>
+      <%= cl_image_tag @vehicle.user.profile_picture, class: "avatar-bordered" %>
+      <p> <strong> <%= "#{@vehicle.user.first_name} #{@vehicle.user.last_name}" %> </strong></p>
+      <div class="vehicule-show-name"><%= @vehicle.name %></div>
+    </div>
   </div>
 
+
+  <div class="container">
+
+    <div class="bloc-vehicles">
+
+      <div class="bloc-vehicle1">
+        <p> <%= @vehicle.description %> </p>
+        <h2>category</h2>
+        <p> <%= @vehicle.category %> </p>
+        <h2>location owner</h2>
+        <p> <%= @vehicle.location %> </p>
+        <h2>price</h2>
+        <p> <%= "#{@vehicle.price} €" %> </p>
+      </div>
+
+      <div class="bloc-vehicle2">
+
+        <div class="reviews">
+
+        <% @vehicle.vehicle_reviews.each do |review| %>
+          <h2>name</h2>
+          <p><%= "#{review.rental.user.first_name} #{review.rental.user.last_name}" %></p>
+          <% img_url = review.rental.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
+          <div class="user-show-review"> <%= image_tag img_url, class: "avatar-large", crop: :fill  %></div>
+          <hr>
+
+          <div class="review-description">
+            <h2>description</h2>
+            <p><%= review.description %></p>
+          </div>
+
+          <div class="show-rating2">
+            <div class="rate-title">
+              <h2>rating</h2>
+            </div>
+            <div class="rating2">
+              <%= review.rating %>
+            <i class="fas fa-star"></i>
+            </div>
+          </div>
+
+        </div>
+        <% end %>
+
+
+
+
+    </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
   <% unless @vehicle.user == current_user %>
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
       Ask for rental!
