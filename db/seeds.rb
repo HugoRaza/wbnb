@@ -42,7 +42,7 @@ User.all.each do |user|
       name: Faker::Vehicle.manufacture,
       category: %w[bike wheelbarrow scooter skateboard animal roller fantasy other].sample,
       description: Faker::ChuckNorris.fact,
-      image: "https://loremflickr.com/320/240/vehicle?id=#{id}",
+      remote_image_url: "https://loremflickr.com/320/240/vehicle?id=#{id}",
       price: rand(1..100),
       location: Faker::Address.country,
       user_id: user.id
