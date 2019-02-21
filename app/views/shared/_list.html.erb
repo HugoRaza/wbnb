@@ -1,21 +1,48 @@
-<%= form_tag(vehicles_path, method: :get) do %>
-  <%= text_field_tag :query, params[:query] %>
-  <%= submit_tag 'Search', name: nil%>
-<% end %>
-<br>
+<div class="row">
+  <% vehicles.each do |vehicle| %>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+        <div class="flipper">
+          <div class="front">
+            <!-- front content -->
+              <div class="card-vehicle">
 
-<% vehicles.each do |vehicle| %>
-  <%= cl_image_tag vehicle.image %>
-  <%= link_to "#{vehicle.name} (#{vehicle.price} €)", vehicle_path(vehicle) %>
-  <h2>location</h2>
-  <p><%= vehicle.location %></p>
-  <p><%= vehicle.category %></p>
-  <p><%= vehicle.user.first_name %></p>
-  <% if vehicle.vehicle_reviews.average(:rating) %>
-    <%= "rating: #{vehicle.vehicle_reviews.average(:rating).round(1)}" %>
-  <% else %>
-    <%= "rating: none" %>
+                  <div class="flex-header">
+                    <div class="location"><i class="fas fa-map-marker-alt"></i> <%= vehicle.location %></div>
+                    <div class="rating">
+                      <% if vehicle.vehicle_reviews.average(:rating) %>
+                        <%= "#{vehicle.vehicle_reviews.average(:rating).round(1)}/5" %>
+                      <% else %>
+                        <%= "?/5" %>
+                      <% end %>
+                    </div>
+                  </div>
+                <div class="bike-background">
+                  <%= cl_image_tag vehicle.image, class:'vehicle-avatar' %>
+                  <%= cl_image_tag vehicle.user.profile_picture, class:'user-avatar rotate' %>
+                </div>
+
+                <div class="card-vehicle-body flex-body">
+                  <div><strong><%= vehicle.price %>€</strong>/day</div>
+                </div>
+
+                <div class="card-vehicle-footer">
+                  <%= vehicle.name %>
+                </div>
+              </div>
+          </div>
+          <div class="back">
+            <!-- back content -->
+            <div class="card-vehicle">
+              <%= link_to vehicle_path(vehicle) do %>
+                <%= cl_image_tag vehicle.image, class: 'card-img-back' %>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
+</div>
 
-  <br>
-<% end %>
