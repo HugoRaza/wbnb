@@ -1,14 +1,14 @@
 <div class="main">
   <h1>My reservations</h1>
-  
+
   <% @rentals.each do |rental| %>
     <% img_url = rental.vehicle.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
     <%= image_tag img_url, alt: "PP", style: "width: 40px;border-radius: 20px;" %>
 
     <%= link_to rental.vehicle.name, rental_path(rental) %>
     <%= rental.message %>
-  
-  
+
+
     <% if rental.status == 'accepted' && rental.end_date < Date.today %>
       <%= link_to 'Add a review', rental_path(rental) %>
     <% elsif rental.status == 'accepted' %>

@@ -14,4 +14,12 @@ class Vehicle < ApplicationRecord
 
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
+
+  # search by name, category and description in HomePage
+  include PgSearch
+  pg_search_scope :search_by_name_category_description_and_location,
+    against: [:name, :category, :description, :location],
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+    }
 end
