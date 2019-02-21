@@ -1,31 +1,39 @@
 .card-vehicle {
   width: 300px;
-  padding: 15px;
+  height: 356px;
   padding-top: 40px;
   background: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
+  box-shadow: 1px 1px 5px #AAA;
+  position: relative;
+}
+
+.location {
+  max-width: 70%;
+}
+
+.flex-header {
+  display: flex;
+  position: absolute;
+  top: 0px;
+  padding: 5px 10px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: top;
 }
 
 .bike-background {
   flex: 0 0 auto;
   height: 202px;
   width: 240px;
+  margin: 0 15px;
   background-image: image_url("bike-old.png");
   background-size: cover;
   background-position: center;
   position: relative;
-}
-
-.flex-header {
-  display: flex;
-  position: absolute;
-  top: -30px;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .user-avatar {
@@ -58,9 +66,33 @@
 }
 
 .flex-body {
-  padding-top: 15px;
+  strong {
+    font-size: 24px;
+  }
+  padding: 15px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.card-vehicle-footer {
+  background: #3c415e;
+  color: white;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  font-size: 18px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+.card-img-back {
+  height: 356px;
+  width: 300px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }

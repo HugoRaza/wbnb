@@ -1,32 +1,48 @@
 <div class="row">
   <% vehicles.each do |vehicle| %>
     <div class="col-xs-12 col-sm-6 col-md-4">
-      <div class="card-vehicle">
+      <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+        <div class="flipper">
+          <div class="front">
+            <!-- front content -->
+              <div class="card-vehicle">
 
-        <div class="bike-background">
-          <%= cl_image_tag vehicle.image, class:'vehicle-avatar' %>
-          <%= cl_image_tag vehicle.user.profile_picture, class:'user-avatar rotate' %>
-          <div class="flex-header">
-            <div><i class="fas fa-map-marker-alt"></i> <%= vehicle.location %></div>
-            <div class="rating">
-              <% if vehicle.vehicle_reviews.average(:rating) %>
-                <%= "#{vehicle.vehicle_reviews.average(:rating).round(1)}/5" %>
-              <% else %>
-                <%= "?/5" %>
+                  <div class="flex-header">
+                    <div class="location"><i class="fas fa-map-marker-alt"></i> <%= vehicle.location %></div>
+                    <div class="rating">
+                      <% if vehicle.vehicle_reviews.average(:rating) %>
+                        <%= "#{vehicle.vehicle_reviews.average(:rating).round(1)}/5" %>
+                      <% else %>
+                        <%= "?/5" %>
+                      <% end %>
+                    </div>
+                  </div>
+                <div class="bike-background">
+                  <%= cl_image_tag vehicle.image, class:'vehicle-avatar' %>
+                  <%= cl_image_tag vehicle.user.profile_picture, class:'user-avatar rotate' %>
+                </div>
+
+                <div class="card-vehicle-body flex-body">
+                  <div><strong><%= vehicle.price %>€</strong>/day</div>
+                </div>
+
+                <div class="card-vehicle-footer">
+                  <%= vehicle.name %>
+                </div>
+              </div>
+          </div>
+          <div class="back">
+            <!-- back content -->
+            <div class="card-vehicle">
+              <%= link_to vehicle_path(vehicle) do %>
+                <%= cl_image_tag vehicle.image, class: 'card-img-back' %>
               <% end %>
+
             </div>
           </div>
-        </div>
-
-        <div class="card-vehicle-body flex-body">
-          <div><%= vehicle.price %>€/day</div>
-          <%= link_to "View vehicle", vehicle_path(vehicle), class: 'btn btn-primary' %>
-        </div>
-
-        <div class="card-vehicle-footer">
-          <h5><%= vehicle.name %></h5>
         </div>
       </div>
     </div>
   <% end %>
 </div>
+
