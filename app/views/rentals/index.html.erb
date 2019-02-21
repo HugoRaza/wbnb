@@ -2,7 +2,9 @@
   <h1>My reservations</h1>
   
   <% @rentals.each do |rental| %>
-    <%= image_tag rental.vehicle.user.profile_picture, alt: "PP", style: "width: 40px;border-radius: 20px;" %>
+    <% img_url = rental.vehicle.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
+    <%= image_tag img_url, alt: "PP", style: "width: 40px;border-radius: 20px;" %>
+
     <%= rental.vehicle.name %>
     <%= rental.message %>
   
