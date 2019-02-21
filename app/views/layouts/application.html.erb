@@ -27,8 +27,8 @@
             <a href="/rentals" class="navbar-lewagon-link">My Rides</a>
           </div>
           <div class="dropdown">
-            <img src='https://pickaface.net/gallery/avatar/20140912_220245_2176_toto.png' class="avatar dropdown-toggle"
-              id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+            <% img_url = current_user.profile_picture.url || image_path("profile_pic_default.jpg") %>
+            <%= image_tag img_url, class: "avatar dropdown-toggle", id: "dropdownMenuButton" %>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <i class="fas fa-user-circle"></i> <%= link_to "My Profile", my_profile_path, class: "dropdown-item"  %>
               <i class="fas fa-sign-out-alt"></i> <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item"  %>

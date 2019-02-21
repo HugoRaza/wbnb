@@ -5,11 +5,7 @@
   <br>
 
   <div>
-    <% if @vehicle.image.to_s.include?("cloudinary") %>
-      <%= cl_image_tag @vehicle.image %>
-    <% else %>
-      <%= image_tag @vehicle.image.file.filename %>
-    <% end %>
+    <%= cl_image_tag @vehicle.image %>
 
     <p> <%= @vehicle.description %> </p>
     <p> <%= @vehicle.category %> </p>
@@ -23,11 +19,8 @@
       <p><%= review.rating %></p>
       <h2>name</h2>
       <p><%= review.rental.user.first_name %></p>
-      <%if @vehicle.user.profile_picture.to_s.include?("cloudinary")  %>
-        <%= cl_image_tag @vehicle.user.profile_picture, height: 200, width: 200, crop: :fill  %>
-      <% else %>
-        <%= image_tag 'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX8353755.jpg', width: 300, height: 200 %>
-      <% end %>
+      <% img_url = @vehicle.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
+      <%= image_tag img_url, height: 200, width: 200, crop: :fill  %>
       <hr>
     <% end %>
   </div>
