@@ -24,7 +24,7 @@ id = 1
     password: "azertyuiop",
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    profile_picture: "https://thispersondoesnotexist.com?id=#{id}"
+    remote_profile_picture_url: "https://thispersondoesnotexist.com?id=#{id}"
   }
   id += 1
 end

@@ -7,7 +7,8 @@
     <p>No reservations yet</p>
   <% else %>
     <% @user.vehicle_rentals.each do |rental| %>
-      <%= image_tag rental.user.profile_picture, alt: "PP", style: "width: 40px;border-radius: 20px;" %>
+      <% img_url = rental.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
+      <%= image_tag img_url, style: "width: 40px;border-radius: 20px;"  %>
       <%= rental.vehicle.name %>
       <%= rental.user.first_name %>
       <%= rental.message %>
