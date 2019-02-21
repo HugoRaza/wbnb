@@ -3,11 +3,7 @@
   
   <p>From: <%= @rental.start_date %></p>
   <p>To:   <%= @rental.end_date %></p>
-    <% if vehicle.image.to_s.include?("cloudinary") %>
-      <%= cl_image_tag vehicle.image %>
-    <% else %>
-      <%= image_tag vehicle.image.file.filename %>
-    <% end %>
+    <%= cl_image_tag vehicle.image %>
     <%= @rental.total_price %>
   
   <% if !@rental.vehicle_review %>

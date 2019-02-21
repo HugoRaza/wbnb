@@ -28,11 +28,7 @@
   
   <% @user.vehicles.each do |vehicle| %>
   
-    <% if vehicle.image.to_s.include?("cloudinary") %>
-      <%= cl_image_tag vehicle.image, alt: "bike", style: "width: 40px;border-radius: 20px;"  %>
-    <% else %>
-      <%= image_tag vehicle.image.file.filename, alt: "bike", style: "width: 40px;border-radius: 20px;"  %>
-    <% end %>
+    <%= cl_image_tag vehicle.image, alt: "bike", style: "width: 40px;border-radius: 20px;"  %>
   
     <%= link_to vehicle.name, vehicle_path(vehicle) %>
     <%= link_to 'Edit', edit_vehicle_path(vehicle) %>

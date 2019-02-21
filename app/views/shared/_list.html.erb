@@ -5,11 +5,7 @@
 <br>
 
 <% vehicles.each do |vehicle| %>
-  <% if vehicle.image.to_s.include?("cloudinary") %>
-    <%= cl_image_tag vehicle.image %>
-  <% else %>
-    <%= image_tag vehicle.image.file.filename %>
-  <% end %>
+  <%= cl_image_tag vehicle.image %>
   <%= link_to "#{vehicle.name} (#{vehicle.price} €)", vehicle_path(vehicle) %>
   <h2>location</h2>
   <p><%= vehicle.location %></p>

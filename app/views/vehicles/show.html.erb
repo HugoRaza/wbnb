@@ -5,11 +5,7 @@
   <br>
   
   <div>
-    <% if @vehicle.image.to_s.include?("cloudinary") %>
-      <%= cl_image_tag @vehicle.image %>
-    <% else %>
-      <%= image_tag @vehicle.image.file.filename %>
-    <% end %>
+    <%= cl_image_tag @vehicle.image %>
     
     <p> <%= @vehicle.description %> </p>
     <p> <%= @vehicle.category %> </p>
