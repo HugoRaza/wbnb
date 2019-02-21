@@ -3,7 +3,7 @@
   
   <p>From: <%= @rental.start_date %></p>
   <p>To:   <%= @rental.end_date %></p>
-    <% img_url = rental.vehicle.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
+    <% img_url = @rental.vehicle.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
     <%= image_tag img_url %>
     <%= @rental.total_price %>
   
