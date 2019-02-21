@@ -96,3 +96,26 @@
   top: 0px;
   left: 0px;
 }
+
+.filter {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#awesome-link {
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  opacity: 0.8;
+}
+
+#awesome-link:hover {
+  font-weight: bold;
+  opacity: 1;
+}
