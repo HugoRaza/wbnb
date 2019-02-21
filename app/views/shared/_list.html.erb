@@ -11,9 +11,9 @@
                     <div class="location"><i class="fas fa-map-marker-alt"></i> <%= vehicle.location %></div>
                     <div class="rating">
                       <% if vehicle.vehicle_reviews.average(:rating) %>
-                        <%= "#{vehicle.vehicle_reviews.average(:rating).round(1)}/5" %>
+                        <%= vehicle.vehicle_reviews.average(:rating).round(1) %><i class="fas fa-star"></i>
                       <% else %>
-                        <%= "?/5" %>
+                        ?<i class="fas fa-star"></i>
                       <% end %>
                     </div>
                   </div>
@@ -36,6 +36,7 @@
             <div class="card-vehicle">
               <%= link_to vehicle_path(vehicle) do %>
                 <%= cl_image_tag vehicle.image, class: 'card-img-back' %>
+                <div class="filter filter-color"><div id="awesome-link">See this vehicule</div></div>
               <% end %>
 
             </div>
