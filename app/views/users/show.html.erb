@@ -1,11 +1,15 @@
 <div class="container main">
   <div class="card-vehicle">
-    <% if @user.profile_picture %>
-      <%= image_tag @user.profile_picture %>
-    <% else %>
-      <%= "no image" %>
-    <% end %>
+
     <p> <%= @user.first_name %> <%= @user.last_name %></p>
     <p> <%= @user.email %> </p>
+
+
+    <%if @user.profile_picture.to_s.include?("cloudinary")  %>
+      <%= cl_image_tag @user.profile_picture, height: 200, width: 200, crop: :fill  %>
+    <% else %>
+      <%= image_tag 'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX8353755.jpg', width: 300, height: 200 %>
+    <% end %>
+
 
  <i class="fas fa-edit"></i> <%= link_to "Edit", edit_user_path(@user)  %>

@@ -3,14 +3,19 @@
   <%= link_to "Back to index", vehicles_path %>
   <br>
   <br>
-  
+
   <div>
-    <%= cl_image_tag @vehicle.image %>
-    
+    <% if @vehicle.image.to_s.include?("cloudinary") %>
+      <%= cl_image_tag @vehicle.image %>
+    <% else %>
+      <%= image_tag @vehicle.image.file.filename %>
+    <% end %>
+
     <p> <%= @vehicle.description %> </p>
     <p> <%= @vehicle.category %> </p>
     <p> <%= @vehicle.user.first_name %> </p>
     <hr>
+
     <% @vehicle.vehicle_reviews.each do |review| %>
       <h2>description</h2>
       <p><%= review.description %></p>
@@ -18,16 +23,20 @@
       <p><%= review.rating %></p>
       <h2>name</h2>
       <p><%= review.rental.user.first_name %></p>
-      <%= image_tag review.rental.user.profile_picture, alt: "User_img", style: "width: 250px;border-radius: 10px;" %>
+      <%if @vehicle.user.profile_picture.to_s.include?("cloudinary")  %>
+        <%= cl_image_tag @vehicle.user.profile_picture, height: 200, width: 200, crop: :fill  %>
+      <% else %>
+        <%= image_tag 'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX8353755.jpg', width: 300, height: 200 %>
+      <% end %>
       <hr>
     <% end %>
   </div>
-  
+
   <% unless @vehicle.user == current_user %>
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
       Ask for rental!
     </button>
-  
+
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
