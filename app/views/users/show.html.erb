@@ -1,11 +1,14 @@
 <div class="container">
   <div class="card-vehicle">
-    <% if @user.profile_picture %>
-      <%= image_tag @user.profile_picture %>
-    <% else %>
-      <%= "no image" %>
-    <% end %>
+
+    <h1>Hhhhhhhhhh</h1>
+
     <p> <%= @user.first_name %> <%= @user.last_name %></p>
     <p> <%= @user.email %> </p>
+
+
+
+      <%= cl_image_tag @user.profile_picture, height: 200, width: 200, crop: :fill  %>
+
 
  <i class="fas fa-edit"></i> <%= link_to "Edit", edit_user_path(@user)  %>
