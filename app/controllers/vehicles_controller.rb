@@ -42,11 +42,10 @@ class VehiclesController < ApplicationController
 
   def index
     if params[:query].present?
-      @vehicles = Vehicle.where('name ILIKE ?', "%#{params[:query]}%")
+      @vehicles = Vehicle.search_by_name_category_description_and_location(params[:query])
     else
       @vehicles = Vehicle.all
     end
-
     @vehicles.where.not(latitude: nil, longitude: nil)
     @markers = @vehicles.map do |vehicle|
       {
