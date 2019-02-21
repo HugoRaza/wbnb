@@ -1,26 +1,40 @@
-<div class="main">
+<div class="reservations-container">
   <h1>My reservations</h1>
 
+  <ul class="reservations-list">
   <% @rentals.each do |rental| %>
-    <% img_url = rental.vehicle.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
-    <%= image_tag img_url, alt: "PP", style: "width: 40px;border-radius: 20px;" %>
+  <li class="reservations-item">
+  <%= cl_image_tag rental.vehicle.image, alt: "PP", class: "vehicle-avatar" %>
 
-    <%= link_to rental.vehicle.name, rental_path(rental) %>
-    <%= rental.message %>
+  <div class="reservations-body">
+  <p>
+  <strong><%= link_to rental.vehicle.name, rental_path(rental) %></strong>
+  </p>
+  <p>
+  <%= rental.vehicle.description %>
+  </p>
+  </div>
 
-
-    <% if rental.status == 'accepted' && rental.end_date < Date.today %>
-      <%= link_to 'Add a review', rental_path(rental) %>
-    <% elsif rental.status == 'accepted' %>
-      Accepted
-    <% elsif rental.status == 'declined' || rental.end_date < Date.today %>
-      Declined
-    <% else %>
-      Pending
-    <% end %>
+  <div class="reservations-status">
+  <p>
+  <% if rental.status == 'accepted' && rental.end_date < Date.today %>
+  <%= link_to 'Add a review', rental_path(rental) %>
+  <% elsif rental.status == 'accepted' %>
+    Accepted
+  <% elsif rental.status == 'declined' || rental.start_date < Date.today %>
+    Declined
+  <% else %>
     <% if rental.start_date > Date.today %>
-      <%= link_to 'Cancel rental request', rental, method: :delete, data: { confirm: 'Are you sure?' } %>
+    Pending (<%= link_to 'Cancel', rental, method: :delete, data: { confirm: 'Are you sure?' } %>)
     <% end %>
-    <br>
+  </p>
+  <p>
+  <%= "#{rental.total_price.round(0)} EUR" %>
+  </p>
   <% end %>
+  </div>
+  </li>
+  <% end %>
+  </ul>
+
 </div>
