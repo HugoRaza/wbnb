@@ -4,7 +4,7 @@
   <ul class="reservations-list">
   <% @rentals.each do |rental| %>
   <li class="reservations-item">
-  <%= cl_image_tag rental.vehicle.image, alt: "PP", class: "vehicle-avatar" %>
+  <%= cl_image_tag rental.vehicle.image, alt: "PP", class: "vehicle-avatar-square" %>
 
   <div class="reservations-body">
   <p>
