@@ -1,56 +1,54 @@
-<div class="main">
-  <h1><%= @vehicle.name %></h1>
-  <%= link_to "Back to index", vehicles_path %>
-  <br>
-  <br>
+<h1><%= @vehicle.name %></h1>
+<%= link_to "Back to index", vehicles_path %>
+<br>
+<br>
 
-  <div>
-    <%= cl_image_tag @vehicle.image %>
+<div>
+  <%= cl_image_tag @vehicle.image %>
 
-    <p> <%= @vehicle.description %> </p>
-    <p> <%= @vehicle.category %> </p>
-    <p> <%= @vehicle.user.first_name %> </p>
+  <p> <%= @vehicle.description %> </p>
+  <p> <%= @vehicle.category %> </p>
+  <p> <%= @vehicle.user.first_name %> </p>
+  <hr>
+
+  <% @vehicle.vehicle_reviews.each do |review| %>
+    <h2>description</h2>
+    <p><%= review.description %></p>
+    <h2>rating</h2>
+    <p><%= review.rating %></p>
+    <h2>name</h2>
+    <p><%= review.rental.user.first_name %></p>
+    <% img_url = @vehicle.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
+    <%= image_tag img_url, height: 200, width: 200, crop: :fill  %>
     <hr>
+  <% end %>
+</div>
 
-    <% @vehicle.vehicle_reviews.each do |review| %>
-      <h2>description</h2>
-      <p><%= review.description %></p>
-      <h2>rating</h2>
-      <p><%= review.rating %></p>
-      <h2>name</h2>
-      <p><%= review.rental.user.first_name %></p>
-      <% img_url = @vehicle.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
-      <%= image_tag img_url, height: 200, width: 200, crop: :fill  %>
-      <hr>
-    <% end %>
-  </div>
+<% unless @vehicle.user == current_user %>
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Ask for rental!
+  </button>
 
-  <% unless @vehicle.user == current_user %>
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-      Ask for rental!
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Rental details</h4>
-          </div>
-          <div class="modal-body">
-            <p> <%= @vehicle.price %>€ per day </p>
-            <%= simple_form_for [@vehicle, @rental] do |f| %>
-              <%= f.error_notification %>
-              <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-              <%= f.input :start_date %>
-              <%= f.input :end_date %>
-              <%= f.input :message %>
-              <%= f.button :submit %>
-            <% end %>
-          </div>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Rental details</h4>
+        </div>
+        <div class="modal-body">
+          <p> <%= @vehicle.price %>€ per day </p>
+          <%= simple_form_for [@vehicle, @rental] do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+            <%= f.input :start_date %>
+            <%= f.input :end_date %>
+            <%= f.input :message %>
+            <%= f.button :submit %>
+          <% end %>
         </div>
       </div>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
