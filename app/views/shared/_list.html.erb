@@ -3,23 +3,28 @@
   <%= submit_tag 'Search', name: nil%>
 <% end %>
 <br>
-
-<% vehicles.each do |vehicle| %>
-  <% if vehicle.image.to_s.include?("cloudinary") %>
-    <%= cl_image_tag vehicle.image %>
-  <% else %>
-    <%= image_tag vehicle.image.file.filename %>
-  <% end %>
-  <%= link_to "#{vehicle.name} (#{vehicle.price} €)", vehicle_path(vehicle) %>
-  <h2>location</h2>
-  <p><%= vehicle.location %></p>
-  <p><%= vehicle.category %></p>
-  <p><%= vehicle.user.first_name %></p>
-  <% if vehicle.vehicle_reviews.average(:rating) %>
-    <%= "rating: #{vehicle.vehicle_reviews.average(:rating).round(1)}" %>
-  <% else %>
-    <%= "rating: none" %>
-  <% end %>
-
-  <br>
+<div class="main-container">
+  <div class="row">
+    <div class="col-xs-6 col-sm-4 col-md-3">
+      <% vehicles.each do |vehicle| %>
+        <div class="card-veh">
+          <% if vehicle.image.to_s.include?("cloudinary") %>
+            <%= cl_image_tag vehicle.image %>
+          <% else %>
+            <%= image_tag vehicle.image.file.filename %>
+          <% end %>
+          <%= link_to "#{vehicle.name} (#{vehicle.price} €)", vehicle_path(vehicle) %>
+          <h2>location</h2>
+          <p><%= vehicle.location %></p>
+          <p><%= vehicle.category %></p>
+          <p><%= vehicle.user.first_name %></p>
+          <% if vehicle.vehicle_reviews.average(:rating) %>
+            <%= "rating: #{vehicle.vehicle_reviews.average(:rating).round(1)}" %>
+          <% else %>
+            <%= "rating: none" %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>

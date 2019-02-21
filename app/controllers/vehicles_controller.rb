@@ -46,6 +46,8 @@ class VehiclesController < ApplicationController
     else
       @vehicles = Vehicle.all
     end
+
+    # markers for the map with information windows
     @vehicles.where.not(latitude: nil, longitude: nil)
     @markers = @vehicles.map do |vehicle|
       {
