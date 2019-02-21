@@ -5,7 +5,7 @@
     <% img_url = rental.vehicle.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
     <%= image_tag img_url, alt: "PP", style: "width: 40px;border-radius: 20px;" %>
 
-    <%= rental.vehicle.name %>
+    <%= link_to rental.vehicle.name, rental_path(rental) %>
     <%= rental.message %>
   
   
