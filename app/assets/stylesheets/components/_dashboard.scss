@@ -1,0 +1,143 @@
+.my-reservations {
+  display: flex;
+  flex-direction: column;
+  // background-color: red;
+  width: 1000px;
+  // margin-right: auto;
+  // margin-right: auto;
+  margin: auto;
+}
+
+.heading {
+  background-color: #3c415e;
+  color: #dfe2e2;
+  flex: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  padding-top: 10px;
+  margin-bottom: 27px;
+  font-style: none;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.reservation {
+  background-color: #dfe2e2;
+  color: #3c415e;
+  flex: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+}
+
+#head-avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+#avatar-image {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+#avatar-vehicle {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  -webkit-box-shadow: 2px 2px 3px -1px rgba(112,112,112,1);
+  -moz-box-shadow: 2px 2px 3px -1px rgba(112,112,112,1);
+  box-shadow: 2px 2px 3px -1px rgba(112,112,112,1);
+}
+
+#avatar-vehicle:hover {
+  height: 55px;
+  width: 55px;
+}
+
+
+
+#user-name {
+  width: 100px;
+}
+
+#vehicle-name {
+    width: 100px;
+}
+
+
+#message-head {
+ width: 400px;
+ text-align: left;
+}
+
+#message {
+ width: 400px;
+ text-align: left;
+ font-style: italic;
+}
+
+#price {
+  width: 80px;
+}
+
+#status {
+  width: 200px;
+}
+
+#accepted {
+  color: #42C9A7;
+  font-weight: bold
+}
+
+#declined {
+  color: #F45F5D;
+  font-weight: bold;
+}
+
+.my-vehicles {
+  width: 1000px;
+  margin: auto;
+  a {
+    color: #757EAD;
+  }
+  a:hover {
+  text-decoration: none;
+  color: #3C415E;
+  }
+}
+
+.vehicles-list {
+  display: flex;
+  text-align: left;
+  justify-content: space-around;
+
+}
+
+.vehicle {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.vehicle-name {
+  font-size: 15px;
+}
+
+#add-vehicle {
+  font-size: 50px;
+  position: relative;
+  bottom: 13px;
+}
+
+
