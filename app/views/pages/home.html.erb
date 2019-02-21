@@ -1,10 +1,14 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%=image_path("wheelbarrow-banner.jpg")%>);">
+<div class="banner">
   <div class="container main">
     <h1>Wbnb offers <strong>great vehicles</strong> to <strong>great people</strong>!</h1>
     <p>Change your life and rent a wheelbarrow around the world.</p>
   </div>
+  <div class="text-center btn-container"><%= link_to 'Find your next vehicle!', vehicles_path, class: 'btn btn-primary' %></a></div>
+  <div class="text-center bottom-div">
+    <a href="#top-8" class="chevron"><i class="fas fa-chevron-circle-down"></i></a>
+  </div>
 </div>
 <br>
-<div class="container">
+<div class="container smooth" id="top-8">
   <%= render "shared/list", vehicles: @vehicles %>
 </div>

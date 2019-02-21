@@ -1,19 +1,32 @@
-<%= form_tag(vehicles_path, method: :get) do %>
-  <%= text_field_tag :term, params[:term] %>
-  <%= submit_tag 'Search', name: nil%>
-<% end %>
-<br>
+<div class="row">
+  <% vehicles.each do |vehicle| %>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <div class="card-vehicle">
 
-<% vehicles.each do |vehicle| %>
-  <%= cl_image_tag vehicle.image %>
-  <%= link_to "#{vehicle.name} (#{vehicle.price} €)", vehicle_path(vehicle) %>
-  <h2>location</h2>
-  <p><%= vehicle.location %></p>
-  <% if vehicle.vehicle_reviews.average(:rating) %>
-    <%= "rating: #{vehicle.vehicle_reviews.average(:rating).round(1)}" %>
-  <% else %>
-    <%= "rating: none" %>
+        <div class="bike-background">
+          <%= cl_image_tag vehicle.image, class:'vehicle-avatar' %>
+          <%= cl_image_tag vehicle.user.profile_picture, class:'user-avatar rotate' %>
+          <div class="flex-header">
+            <div><i class="fas fa-map-marker-alt"></i> <%= vehicle.location %></div>
+            <div class="rating">
+              <% if vehicle.vehicle_reviews.average(:rating) %>
+                <%= "#{vehicle.vehicle_reviews.average(:rating).round(1)}/5" %>
+              <% else %>
+                <%= "?/5" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-vehicle-body flex-body">
+          <div><%= vehicle.price %>€/day</div>
+          <%= link_to "View vehicle", vehicle_path(vehicle), class: 'btn btn-primary' %>
+        </div>
+
+        <div class="card-vehicle-footer">
+          <h5><%= vehicle.name %></h5>
+        </div>
+      </div>
+    </div>
   <% end %>
-
-  <br>
-<% end %>
+</div>
