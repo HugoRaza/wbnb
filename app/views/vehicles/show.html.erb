@@ -21,7 +21,11 @@
     <p><%= review.rating %></p>
     <h2>name</h2>
     <p><%= review.rental.user.first_name %></p>
-    <%= image_tag review.rental.user.profile_picture, alt: "User_img", style: "width: 250px;border-radius: 10px;" %>
+    <%if @vehicle.user.profile_picture.to_s.include?("cloudinary")  %>
+      <%= cl_image_tag @vehicle.user.profile_picture, height: 200, width: 200, crop: :fill  %>
+    <% else %>
+      <%= image_tag 'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX8353755.jpg', width: 300, height: 200 %>
+    <% end %>
     <hr>
   <% end %>
 </div>
