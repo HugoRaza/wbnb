@@ -32,11 +32,11 @@ user_attributes << {
   remote_profile_picture_url: "https://comps.canstockphoto.com/man-with-plant-and-wheelbarrow-image_csp38765975.jpg"
 }
 user_attributes << {
-  email: "toto@mail.com",
+  email: "bogossdu63@hotmail.com",
   password: "azertyuiop",
-  first_name: "toto",
+  first_name: "Toto",
   last_name: "Luimaim",
-  remote_profile_picture_url: "https://image.shutterstock.com/image-vector/caucasian-gardener-wheelbarrow-standing-on-450w-696109057.jpg"
+  remote_profile_picture_url: "https://wir.skyrock.net/wir/v1/profilcrop/?c=mog&w=301&h=301&im=%2Fbig.128950869.jpg"
 }
 user_attributes << {
   email: "biquettedetoto@mail.com",
@@ -98,7 +98,7 @@ vehicle_attributes << {
 }
 id += 1
 vehicle_attributes << {
-  name: "#{Faker::Hacker.adjective} Wheelbarrow",
+  name: "Optical Wheelbarrow",
   category: "wheelbarrow",
   description: Faker::ChuckNorris.fact.gsub("Chuck Norris", "Wheelbarrow"),
   remote_image_url: "http://photos.hamariweb.com/photos/Funny-Labour-Trolly-14079.jpg",
@@ -107,7 +107,7 @@ vehicle_attributes << {
   user_id: id
 }
 vehicle_attributes << {
-  name: "#{Faker::Hacker.adjective} Wheelbarrow",
+  name: "Opensource Wheelbarrow",
   category: "wheelbarrow",
   description: Faker::ChuckNorris.fact.gsub("Chuck Norris", "Wheelbarrow"),
   remote_image_url: "https://vignette.wikia.nocookie.net/tales-of-athlin/images/e/e0/Funny-wheelbarrow-bench-design.jpg/revision/latest?cb=20131021190601",
