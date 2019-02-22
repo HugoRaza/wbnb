@@ -9,7 +9,7 @@
         <%= "#{@vehicle.vehicle_reviews.average(:rating).round(1)}" %>
         <div class="rating1"> <i class="fas fa-star"></i> </div>
       </div>
-      <%= cl_image_tag @vehicle.user.profile_picture, class: "avatar-bordered" %>
+      <%= cl_image_tag @vehicle.user.profile_picture, class: "avatar-bordered position" %>
       <p> <strong> <%= "#{@vehicle.user.first_name} #{@vehicle.user.last_name}" %> </strong></p>
       <div class="vehicule-show-name"><%= @vehicle.name %></div>
     </div>
@@ -55,7 +55,7 @@
                 <p><%= "#{review.rental.user.first_name} #{review.rental.user.last_name}" %></p>
                 <!--  user picture -->
                 <% img_url = review.rental.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
-                <div class="user-show-review"> <%= image_tag img_url, class: "avatar-large", crop: :fill  %>
+                <div class="user-show-review"> <%= image_tag img_url, class: "avatar-large ", crop: :fill  %>
                 </div>
               </div>
               <!-- user comment -->
@@ -65,7 +65,6 @@
               </div>
               <!-- user rating -->
             </div>
-            <hr>
           <% end %>
         </div>
       </div>
