@@ -1,7 +1,11 @@
 .banner {
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), image_url("wheelbarrow-banner.jpg");
   background-size: cover;
   background-position: center;
-  padding: 150px 0;
+  padding-top: 180px;
+  height: 100vh;
+  margin-top: -73px;
+  position: relative;
 }
 
 .banner h1 {
@@ -17,4 +21,40 @@
   color: white;
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.btn-container {
+  padding-top: 42px;
+}
+
+.chevron {
+  font-size: 55px;
+  color: white;
+  // opacity: 0.7;
+  animation: wave 2s ease infinite;
+}
+
+@keyframes wave{
+     from {opacity: 1;}
+     50%  {opacity: 0.5;}
+     to   {opacity: 1;}
+}
+
+.chevron:hover {
+  font-size: 60px;
+  color: white;
+}
+
+.bottom-div {
+  position: absolute;
+  width: 100%;
+  bottom: 5px;
+}
+
+.smooth {
+  scroll-behavior: smooth;
+}
+
+#top-8 {
+  padding-top: 80px;
 }

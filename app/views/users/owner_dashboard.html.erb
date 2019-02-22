@@ -1,41 +1,105 @@
-<div class="main">
-  <h1>Dashboard</h1>
-  
-  <h2>Reservations</h2>
-  
-  <% if @user.vehicle_rentals.empty? %>
-    <p>No reservations yet</p>
-  <% else %>
-    <% @user.vehicle_rentals.each do |rental| %>
-      <% img_url = rental.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
-      <%= image_tag img_url, style: "width: 40px;border-radius: 20px;"  %>
-      <%= rental.vehicle.name %>
-      <%= rental.user.first_name %>
-      <%= rental.message %>
-      <%= rental.total_price %>
-      <% if rental.status == 'pending' %>
-        <%= link_to 'Accept', rental_path(rental, status: 'accepted'), data: { confirm: 'Are you sure?' }, method: :patch %>
-        <%= link_to 'Decline', rental_path(rental, status: 'declined'), data: { confirm: 'Are you sure?' }, method: :patch %>
-      <% elsif rental.status == 'accepted' %>
-        Accepted
-      <% elsif rental.status == 'declined' %>
-        Declined
+<div class="dashboard">
+  <div class="my-reservations">
+      <h2>Reservations</h2>
+
+      <% if @user.vehicle_rentals.empty? %>
+        <p>No reservations yet</p>
+      <% else %>
+
+      <div class="heading">
+
+            <div id="head-avatar">
+            </div>
+
+            <div id="vehicle-name">
+              Ride
+            </div>
+
+            <div id="user-name">
+              From
+            </div>
+
+            <div id="message-head">
+              Message
+            </div>
+
+            <div id="price">
+              Price
+            </div>
+
+            <div id="status">
+              Your choice
+            </div>
+      </div>
+
+        <% @user.vehicle_rentals.each do |rental| %>
+          <div class="reservation">
+            <div id="avatar-image">
+            <% img_url = rental.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
+            <%= image_tag img_url, id: "avatar-image"  %>
+            </div>
+
+            <div id="vehicle-name">
+            <%= rental.vehicle.name %>
+            </div>
+
+            <div id="user-name">
+            <%= rental.user.first_name %>
+            </div>
+
+
+            <div id="message">
+            <%= rental.message %>
+            </div>
+
+            <div id="price">
+            <%= rental.total_price %> €
+            </div>
+
+            <div id="status">
+            <% if rental.status == 'pending' %>
+              <%= link_to 'Accept', rental_path(rental, status: 'accepted'), data: { confirm: 'Are you sure?' }, method: :patch, class: "btn btn-success" %>
+              <%= link_to 'Decline', rental_path(rental, status: 'declined'), data: { confirm: 'Are you sure?' }, method: :patch, class: "btn btn-danger" %>
+            <% elsif rental.status == 'accepted' %>
+              <p id="accepted" >Accepted</p>
+            <% elsif rental.status == 'declined' %>
+              <p id="declined" >Declined</p>
+            <% end %>
+            </div>
+          </div>
+            <br>
+        <% end %>
       <% end %>
-      <br>
-    <% end %>
-  <% end %>
-  
-  <h2>My vehicles</h2>
-  
-  <% @user.vehicles.each do |vehicle| %>
-  
-    <%= cl_image_tag vehicle.image, alt: "bike", style: "width: 40px;border-radius: 20px;"  %>
-  
-    <%= link_to vehicle.name, vehicle_path(vehicle) %>
-    <%= link_to 'Edit', edit_vehicle_path(vehicle) %>
-    <%= link_to 'Remove', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <br>
-  <% end %>
-  <br>
-  <%= link_to 'Add new vehicle', new_vehicle_path %>
+    </div>
+
+
+  <div class="my-vehicles">
+    <h2>My vehicles</h2>
+
+  <div class="vehicles-list">
+
+      <% @user.vehicles.each do |vehicle| %>
+
+      <div class="vehicle">
+
+
+        <div class="avatar-image">
+          <%= link_to vehicle_path(vehicle) do %>
+          <%= cl_image_tag vehicle.image, alt: "bike", id: "avatar-vehicle"  %>
+          <% end %>
+        </div>
+
+        <div class="modif">
+          <%= link_to '', edit_vehicle_path(vehicle), class: "fas fa-wrench" %>
+          <%= link_to '', vehicle, method: :delete, data: { confirm: 'Are you sure?' }, class: "fas fa-trash" %>
+        </div>
+
+      </div>
+      <% end %>
+      <div class="vehicle">
+        <%= link_to '', new_vehicle_path, :id => "add-vehicle", class: "fas fa-plus-circle"%>
+      </div>
+
+    </div>
+  </div>
 </div>

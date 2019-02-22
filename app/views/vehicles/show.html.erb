@@ -1,4 +1,4 @@
-<div class="main">
+
   <%= link_to "Back to index", vehicles_path %>
   <br>
   <br>
@@ -67,7 +67,7 @@
 
     </div>
   </div>
-</div>
+
   <div class="show-button-modal">
     <% unless @vehicle.user == current_user %>
       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
@@ -93,8 +93,9 @@
               <%= f.button :submit %>
             <% end %>
           </div>
+
         </div>
       </div>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

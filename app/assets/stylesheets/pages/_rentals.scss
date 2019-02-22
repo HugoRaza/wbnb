@@ -1,0 +1,45 @@
+body {
+  background-color: white;
+}
+
+.reservations-container {
+  width: 1170px;
+  padding: 0 15px;
+  margin: 73px auto;
+  h1 {
+    padding: 20px 0;
+  }
+  .reservations-list {
+    border: 1px solid #dce0e0;
+    padding: 0 20px;
+    margin: 0;
+    list-style-type: none;
+    .reservations-item{
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid rgba(220,224,244,0.4);
+      font-size: 15px;
+      .vehicle-avatar-square {
+        border-radius: 5%;
+        width: 150px;
+        height: 150px;
+      }
+      .reservations-body {
+        flex-grow: 1;
+        padding: 0 15px;
+        color: rgba(0,0,0,0.4);
+        strong a {
+          color: rgba(0,0,0,0.9);
+          font-size: 25px;
+        }
+      }
+      .reservations-status {
+        flex: 0 0 15%;
+      }
+    }
+    .reservations-item:last-child  {
+      border-bottom: none;
+    }
+  }
+}

@@ -15,5 +15,9 @@
 @import "pages/index";
 
 .main {
-  margin-top: 89px;
+  margin-top: 73px;
+}
+
+html {
+  scroll-behavior: smooth;
 }
