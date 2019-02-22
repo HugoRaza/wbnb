@@ -111,3 +111,18 @@
   right: 10px;
   top: 5px;
 }
+
+.card-whole-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: white;
+  opacity: 0;
+  z-index: 3;
+}
+
+.card-whole-link:hover {
+  opacity: 0.2;
+}

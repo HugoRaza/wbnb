@@ -1,29 +1,59 @@
-<h1><%= link_to @rental.vehicle.name, vehicle_path(@rental.vehicle) %></h1>
+<br>
 
-<p>From: <%= @rental.start_date %></p>
-<p>To:   <%= @rental.end_date %></p>
-  <% img_url = @rental.vehicle.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
-  <%= image_tag img_url %>
-  <%= @rental.total_price %>
+<div class="container">
+  <div class="flex-show">
+    <div class="card-show-vehicle" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @rental.vehicle.image %>);">
+      <%= link_to vehicle_path(@rental.vehicle) do %>
+        <div class="card-whole-link"></div>
+      <% end %>
+      <div class="card-info">
+        <div class="show-rating">
+          <% unless @rental.vehicle.vehicle_reviews.empty? %>
+            <%= @rental.vehicle.vehicle_reviews.average(:rating).round(1) %>
+            <div class="rating1"> <i class="fas fa-star"></i></div>
+          <% end %>
+        </div>
+        <%= cl_image_tag @rental.vehicle.user.profile_picture, class: "avatar-bordered position" %>
+        <p> <strong> <%= "#{@rental.vehicle.user.first_name} #{@rental.vehicle.user.last_name}" %> </strong></p>
+        <div class="vehicule-show-name"><%= @rental.vehicle.name %></div>
+      </div>
+    </div>
+  </div>
+  <div class="bloc-vehicles">
+    <div class="bloc-vehicle1">
+      <div class="vehicle-description">
+        <h3>Description</h3>
+        <p> <%= @rental.vehicle.description %> </p>
+        <h3>Category</h3>
+        <p> <%= @rental.vehicle.category %> </p>
+        <h3>Location owner</h3>
+        <p> <%= @rental.vehicle.location %> </p>
+        <h3>Total price</h3>
+        <p> <%= "#{@rental.total_price} € (from #{@rental.start_date} to #{@rental.end_date})" %> </p>
+      </div>
+    </div>
+    <div class="bloc-vehicle2">
+      <% if !@rental.vehicle_review %>
+        <% if @rental.status == 'accepted' && @rental.end_date < Date.today %>
+          <%= simple_form_for [@rental, @vehicle_review] do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+            <%= f.input :rating %>
+            <%= f.input :description %>
+            <%= f.button :submit %>
+          <% end %>
 
-<% if !@rental.vehicle_review %>
-  <% if @rental.status == 'accepted' && @rental.end_date < Date.today %>
-    <%= simple_form_for [@rental, @vehicle_review] do |f| %>
-      <%= f.error_notification %>
-      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-      <%= f.input :rating %>
-      <%= f.input :description %>
-      <%= f.button :submit %>
-    <% end %>
+        <% elsif @rental.status == 'accepted' %>
+          Accepted
+        <% elsif @rental.status == 'declined' || @rental.end_date < Date.today %>
+          Declined
+        <% else %>
+          Pending
+        <% end %>
 
-  <% elsif @rental.status == 'accepted' %>
-    Accepted
-  <% elsif @rental.status == 'declined' || @rental.end_date < Date.today %>
-    Declined
-  <% else %>
-    Pending
-  <% end %>
-
-<% else %>
-  You already left a comment
-<% end %>
+      <% else %>
+        You already left a review!
+      <% end %>
+    </div>
+  </div>
+</div>
