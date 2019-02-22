@@ -1,16 +1,21 @@
-<h1>Vehicle Index</h1>
+<div class="index-flex">
+  <div class="index-main">
+    <h1>Find your vehicle</h1>
 
-<%= form_tag(vehicles_path, method: :get) do %>
-  <%= text_field_tag :term, params[:term] %>
-  <%= submit_tag 'Search', name: nil%>
-<% end %>
-<br>
+    <%= form_tag(vehicles_path, method: :get) do %>
+      <%= text_field_tag :term, params[:term] %>
+      <%= submit_tag 'Search', name: nil, class:'btn btn-info' %>
+    <% end %>
+  </div>
 
-<%= render "shared/list", vehicles: @vehicles %>
-<div
-  id="map"
-  style="width: 50%;
-  height: 300px;"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-  data-markers="<%= @markers.to_json %>">
+  <div
+    id="map"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+    data-markers="<%= @markers.to_json %>">
+  </div>
+</div>
+
+<div class="container">
+  <hr>
+  <%= render "shared/list", vehicles: @vehicles %>
 </div>
