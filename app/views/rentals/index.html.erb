@@ -69,6 +69,8 @@
           <% else %>
             <% if rental.start_date > Date.today %>
               Pending (<%= link_to 'Cancel', rental, method: :delete, data: { confirm: 'Are you sure?' } %>)
+            <% else %>
+              Pending
             <% end %>
           <% end %>
         </p>
