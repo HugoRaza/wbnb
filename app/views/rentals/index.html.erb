@@ -7,7 +7,7 @@
   </div>
 
   <ul class="reservations-list" id="reservations-ongoing">
-    <% @rentals.where("start_date >= now() and status <> 'declined'").order(start_date: :asc).each do |rental| %>
+    <% @rentals.where("end_date >= now() and status <> 'declined'").order(start_date: :asc).each do |rental| %>
     <li class="reservations-item">
       <%= cl_image_tag rental.vehicle.image, alt: "PP", class: "vehicle-avatar-square" %>
 
@@ -31,6 +31,8 @@
           <% else %>
             <% if rental.start_date > Date.today %>
               Pending (<%= link_to 'Cancel', rental, method: :delete, data: { confirm: 'Are you sure?' } %>)
+            <% else %>
+              Pending
             <% end %>
           <% end %>
         </p>
@@ -43,7 +45,7 @@
   </ul>
 
   <ul class="reservations-list hidden" id="reservations-declined">
-    <% @rentals.where("start_date < now() or status = 'declined'").order(start_date: :asc).each do |rental| %>
+    <% @rentals.where("end_date <  now() or status = 'declined'").order(start_date: :asc).each do |rental| %>
     <li class="reservations-item">
       <%= cl_image_tag rental.vehicle.image, alt: "PP", class: "vehicle-avatar-square" %>
 
