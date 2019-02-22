@@ -52,7 +52,8 @@
         <% end %>
 
       <% else %>
-        You already left a review!
+        <strong>You already left a review!</strong><br><br>
+        <%= @rental.vehicle_review.rating %><i class="fas fa-star"></i> - <%= @rental.vehicle_review.description %>
       <% end %>
     </div>
   </div>
