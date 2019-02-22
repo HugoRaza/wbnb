@@ -9,8 +9,44 @@ body {
   h1 {
     padding: 20px 0;
   }
+  .tabs {
+    display: flex;
+    align-items: center;
+    .tab {
+      font-size: 18px;
+      // font-weight: bold;
+      padding: 10px;
+      // opacity: 0.3;
+      border-bottom: 5px solid transparent;
+      text-decoration: none;
+      color: black;
+    }
+    #next-rides {
+      border-top: 1px solid #3c415e;
+      border-left: 1px solid #3c415e;
+      border-top-left-radius: 4px;
+    }
+    #old-rides {
+      border-right: 1px solid #3c415e;
+      border-top: 1px solid #3c415e;
+      border-top-right-radius: 4px;
+    }
+    .tab.active {
+      opacity: 1;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 10px;
+      border-bottom: 5px solid #00A699;
+      color: white;
+      background-color: #3c415e;
+    }
+    .tab.disabled {
+      pointer-events: none;
+    }
+  }
   .reservations-list {
     border: 1px solid #dce0e0;
+    border-radius: 0 15px 15px 15px;
     padding: 0 20px;
     margin: 0;
     list-style-type: none;
@@ -36,6 +72,12 @@ body {
       }
       .reservations-status {
         flex: 0 0 15%;
+      }
+      .reservations-status.pending {
+        color: lightgrey;
+      }
+      .reservations-status.declined {
+        color: red;
       }
     }
     .reservations-item:last-child  {
