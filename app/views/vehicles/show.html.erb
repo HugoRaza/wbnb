@@ -1,7 +1,7 @@
+<%= link_to "Back to index", vehicles_path %>
+<br>
+<br>
 
-  <%= link_to "Back to index", vehicles_path %>
-  <br>
-  <br>
 <div class="flex-show">
   <div class="card-show-vehicle" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @vehicle.image %>);">
     <div class="card-info">
@@ -16,85 +16,92 @@
   </div>
 </div>
 
-  <div class="container">
+<div class="container">
 
-    <div class="bloc-vehicles">
+  <div class="bloc-vehicles">
 
-      <div class="bloc-vehicle1">
-        <div class="vehicle-description">
-          <h2>Description</h2>
-          <p> <%= @vehicle.description %> </p>
-          <h2>Category</h2>
-          <p> <%= @vehicle.category %> </p>
-          <h2>Location owner</h2>
-          <p> <%= @vehicle.location %> </p>
-          <h2>Price</h2>
-          <p> <%= "#{@vehicle.price} €" %> </p>
-        </div>
-        <!-- modal button -->
-        <div class="show-button-modal">
-          <% unless @vehicle.user == current_user %>
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-              Ask for rental!
-            </button>
-        </div>
+    <div class="bloc-vehicle1">
+      <div class="vehicle-description">
+        <h2>Description</h2>
+        <p> <%= @vehicle.description %> </p>
+        <h2>Category</h2>
+        <p> <%= @vehicle.category %> </p>
+        <h2>Location owner</h2>
+        <p> <%= @vehicle.location %> </p>
+        <h2>Price</h2>
+        <p> <%= "#{@vehicle.price} €" %> </p>
       </div>
-
-      <div class="bloc-vehicle2">
-
-        <div class="reviews">
-          <% @vehicle.vehicle_reviews.each do |review| %>
-            <div class="review">
-              <div class="review-rating">
-                <div class="rating2">
-                  <%= review.rating %>
-                <i class="fas fa-star"></i>
-                </div>
-              </div>
-              <div class="review-user">
-                <!-- user name -->
-                <p><%= "#{review.rental.user.first_name} #{review.rental.user.last_name}" %></p>
-                <!--  user picture -->
-                <% img_url = review.rental.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
-                <div class="user-show-review"> <%= image_tag img_url, class: "avatar-large ", crop: :fill  %>
-                </div>
-              </div>
-              <!-- user comment -->
-              <div class="review-description">
-                <h2>comment</h2>
-                <p><%= review.description %></p>
-              </div>
-              <!-- user rating -->
-            </div>
-          <% end %>
-        </div>
+      <!-- modal button -->
+      <div class="show-button-modal">
+        <% unless @vehicle.user == current_user %>
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Ask for rental!
+          </button>
       </div>
     </div>
+
+    <div class="bloc-vehicle2">
+
+      <div class="reviews">
+        <% @vehicle.vehicle_reviews.each do |review| %>
+          <div class="review">
+            <div class="review-rating">
+              <div class="rating2">
+                <%= review.rating %>
+              <i class="fas fa-star"></i>
+              </div>
+            </div>
+
+            <div class="review-user">
+              <!-- user name -->
+              <p><%= "#{review.rental.user.first_name} #{review.rental.user.last_name}" %></p>
+              <!--  user picture -->
+              <% img_url = review.rental.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
+              <div class="user-show-review"> <%= image_tag img_url, class: "avatar-large ", crop: :fill  %>
+              </div>
+            </div>
+
+            <!-- user comment -->
+            <div class="review-description">
+              <h2>comment</h2>
+              <p><%= review.description %></p>
+            </div>
+
+            <!-- user rating -->
+          </div>
+
+        <% end %>
+      </div>
+
+    </div>
+
   </div>
+
+</div>
 
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Rental details</h4>
-          </div>
-          <div class="modal-body">
-            <p> <%= @vehicle.price %>€ per day </p>
-            <%= simple_form_for [@vehicle, @rental] do |f| %>
-              <%= f.error_notification %>
-              <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-              <%= f.input :start_date %>
-              <%= f.input :end_date %>
-              <%= f.input :message %>
-              <%= f.button :submit %>
-            <% end %>
-          </div>
-
-        </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Rental details</h4>
       </div>
+      <div class="modal-body">
+        <p> <%= @vehicle.price %>€ per day </p>
+        <%= simple_form_for [@vehicle, @rental] do |f| %>
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+          <%= f.input :start_date %>
+          <%= f.input :end_date %>
+          <%= f.input :message %>
+          <%= f.button :submit %>
+        <% end %>
+      </div>
+
     </div>
   </div>
+</div>
+
 <% end %>
