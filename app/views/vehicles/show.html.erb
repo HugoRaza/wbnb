@@ -2,10 +2,10 @@
   <%= link_to "Back to index", vehicles_path %>
   <br>
   <br>
-
+<div class="flex-show">
   <div class="card-show-vehicle" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @vehicle.image %>);">
     <div class="card-info">
-      <div class="show-rating1">
+      <div class="show-rating">
         <%= "#{@vehicle.vehicle_reviews.average(:rating).round(1)}" %>
         <div class="rating1"> <i class="fas fa-star"></i> </div>
       </div>
@@ -14,66 +14,65 @@
       <div class="vehicule-show-name"><%= @vehicle.name %></div>
     </div>
   </div>
-
+</div>
 
   <div class="container">
 
     <div class="bloc-vehicles">
 
       <div class="bloc-vehicle1">
-        <p> <%= @vehicle.description %> </p>
-        <h2>category</h2>
-        <p> <%= @vehicle.category %> </p>
-        <h2>location owner</h2>
-        <p> <%= @vehicle.location %> </p>
-        <h2>price</h2>
-        <p> <%= "#{@vehicle.price} €" %> </p>
+        <div class="vehicle-description">
+          <p> <%= @vehicle.description %> </p>
+          <h2>category</h2>
+          <p> <%= @vehicle.category %> </p>
+          <h2>location owner</h2>
+          <p> <%= @vehicle.location %> </p>
+          <h2>price</h2>
+          <p> <%= "#{@vehicle.price} €" %> </p>
+        </div>
+        <!-- modal button -->
+        <div class="show-button-modal">
+          <% unless @vehicle.user == current_user %>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+              Ask for rental!
+            </button>
+        </div>
       </div>
 
       <div class="bloc-vehicle2">
 
         <div class="reviews">
-
-        <% @vehicle.vehicle_reviews.each do |review| %>
-          <h2>name</h2>
-          <p><%= "#{review.rental.user.first_name} #{review.rental.user.last_name}" %></p>
-          <% img_url = review.rental.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
-          <div class="user-show-review"> <%= image_tag img_url, class: "avatar-large", crop: :fill  %></div>
-
-          <div class="review-description">
-            <h2>description</h2>
-            <p><%= review.description %></p>
-          </div>
-
-          <div class="show-rating2">
-            <div class="rate-title">
-              <h2>rating</h2>
+          <% @vehicle.vehicle_reviews.each do |review| %>
+            <div class="review">
+              <div class="review-rating">
+                <div class="rating2">
+                  <%= review.rating %>
+                <i class="fas fa-star"></i>
+                </div>
+              </div>
+              <div class="review-user">
+                <!-- user name -->
+                <p><%= "#{review.rental.user.first_name} #{review.rental.user.last_name}" %></p>
+                <!--  user picture -->
+                <% img_url = review.rental.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
+                <div class="user-show-review"> <%= image_tag img_url, class: "avatar-large", crop: :fill  %>
+                </div>
+              </div>
+              <!-- user comment -->
+              <div class="review-description">
+                <h2>comment</h2>
+                <p><%= review.description %></p>
+              </div>
+              <!-- user rating -->
             </div>
-            <div class="rating2">
-              <%= review.rating %>
-            <i class="fas fa-star"></i>
-            </div>
-          </div>
-
+            <hr>
+          <% end %>
         </div>
-        <% end %>
-
-
-
-
-    </div>
-
       </div>
-
     </div>
   </div>
 
-  <div class="show-button-modal">
-    <% unless @vehicle.user == current_user %>
-      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-        Ask for rental!
-      </button>
-  </div>
+
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">

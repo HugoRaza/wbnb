@@ -1,5 +1,4 @@
 .card-show-vehicle {
-  margin: 0px 180px 40px 250px;
   background-size: cover;
   position: relative;
   height: 400px;
@@ -10,6 +9,14 @@
   text-align: center;
 
 }
+
+.flex-show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 2%
+}
+
 .card-show-vehicle .card-info p {
    margin-right: 15px;
    color: white;
@@ -18,7 +25,7 @@
    right: 45px;
    font-size: 21px;
 }
-.show-rating1 {
+.show-rating {
   display: flex;
   color: white;
   font-size: 25px;
@@ -43,41 +50,53 @@
 
 .bloc-vehicles {
   display: flex;
-  text-align: space-beetwen;
+  align-items: center;
+  justify-content: center;
 }
 .bloc-vehicle1 {
-  border-right: 1px solid;
-  margin: 5px 5px
+  position: relative;
+  width: 50vw;
+  .show-button-modal {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  }
 
 }
 .bloc-vehicle2 {
-  margin: 5px 15px;
+  position: relative;
+  border-left: 1px solid;
+  width: 50vw;
+  padding-bottom: 1%
+}
+.review {
+  display: flex;
+}
+.review-description {
+  flex-grow: 1;
+  h2 {
+    padding: 0;
+    margin-top: 0;
+  }
 }
 .user-show-review {
-  margin: 15px 100px;
+  margin-left: 100px;
+  margin-bottom: 15px;
+  // margin: 15px 100px;
   background-size: cover;
   height: 40px;
   width: 40px;
 }
-.show-rating2 {
-  position: relative;
+.review-rating {
   display: flex;
-  align-text: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  flex-shrink: 0;
   .fa-star {
   color: yellow;
   }
-  .rating2 {
-    position: absolute;
-    bottom: -32px;
-  }
-}
-.review-description {
-  margin-top: 40px;
-}
-.review-description h2 {
-  margin-top: 80px;
 }
 
-.show-button-modal {
-
-}
