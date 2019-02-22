@@ -1,40 +1,81 @@
 <div class="reservations-container">
-  <h1>My reservations</h1>
+  <h1>My Rides</h1>
 
-  <ul class="reservations-list">
-  <% @rentals.order(start_date: :asc).each do |rental| %>
-  <li class="reservations-item">
-  <%= cl_image_tag rental.vehicle.image, alt: "PP", class: "vehicle-avatar-square" %>
-
-  <div class="reservations-body">
-  <p>
-  <strong><%= link_to rental.vehicle.name, rental_path(rental) %></strong>
-  </p>
-  <p>
-  <%= rental.vehicle.description %>
-  </p>
+  <div class="tabs">
+        <a href="#" class="tab active disabled" id="next-rides">Next Rides</a>
+        <a href="#" class="tab" id="old-rides">Past and declined rides</a>
   </div>
 
-  <div class="reservations-status">
-  <p>
-  <% if rental.status == 'accepted' && rental.end_date < Date.today %>
-  <%= link_to 'Add a review', rental_path(rental) %>
-  <% elsif rental.status == 'accepted' %>
-    Accepted
-  <% elsif rental.status == 'declined' || rental.start_date < Date.today %>
-    Declined
-  <% else %>
-    <% if rental.start_date > Date.today %>
-    Pending (<%= link_to 'Cancel', rental, method: :delete, data: { confirm: 'Are you sure?' } %>)
+  <ul class="reservations-list" id="reservations-ongoing">
+    <% @rentals.where("start_date >= now() and status <> 'declined'").order(start_date: :asc).each do |rental| %>
+    <li class="reservations-item">
+      <%= cl_image_tag rental.vehicle.image, alt: "PP", class: "vehicle-avatar-square" %>
+
+      <div class="reservations-body">
+        <p>
+          <strong><%= link_to rental.vehicle.name, rental_path(rental) %></strong>
+        </p>
+        <p>
+          <%= rental.vehicle.description %>
+        </p>
+      </div>
+
+      <div class="reservations-status <%= status_class(rental) %>">
+        <p>
+          <% if rental.status == 'accepted' && rental.end_date < Date.today %>
+            <%= link_to 'Add a review', rental_path(rental) %>
+          <% elsif rental.status == 'accepted' %>
+            Accepted
+          <% elsif rental.status == 'declined' || rental.start_date < Date.today %>
+            Declined
+          <% else %>
+            <% if rental.start_date > Date.today %>
+              Pending (<%= link_to 'Cancel', rental, method: :delete, data: { confirm: 'Are you sure?' } %>)
+            <% end %>
+          <% end %>
+        </p>
+        <p>
+          <%= "#{rental.total_price.round(0)} EUR" %>
+        </p>
+      </div>
+    </li>
     <% end %>
-  </p>
-  <p>
-  <%= "#{rental.total_price.round(0)} EUR" %>
-  </p>
-  <% end %>
-  </div>
-  </li>
-  <% end %>
+  </ul>
+
+  <ul class="reservations-list hidden" id="reservations-declined">
+    <% @rentals.where("start_date < now() or status = 'declined'").order(start_date: :asc).each do |rental| %>
+    <li class="reservations-item">
+      <%= cl_image_tag rental.vehicle.image, alt: "PP", class: "vehicle-avatar-square" %>
+
+      <div class="reservations-body">
+        <p>
+          <strong><%= link_to rental.vehicle.name, rental_path(rental) %></strong>
+        </p>
+        <p>
+          <%= rental.vehicle.description %>
+        </p>
+      </div>
+
+      <div class="reservations-status <%= status_class(rental) %>">
+        <p>
+          <% if rental.status == 'accepted' && rental.end_date < Date.today %>
+            <%= link_to 'Add a review', rental_path(rental) %>
+          <% elsif rental.status == 'accepted' %>
+            Accepted
+          <% elsif rental.status == 'declined' || rental.start_date < Date.today %>
+            Declined
+          <% else %>
+            <% if rental.start_date > Date.today %>
+              Pending (<%= link_to 'Cancel', rental, method: :delete, data: { confirm: 'Are you sure?' } %>)
+            <% end %>
+          <% end %>
+        </p>
+        <p>
+          <%= "#{rental.total_price.round(0)} EUR" %>
+        </p>
+      </div>
+    </li>
+    <% end %>
   </ul>
 
 </div>
