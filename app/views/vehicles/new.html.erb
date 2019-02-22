@@ -1,16 +1,30 @@
-<h1>Create a new vehicle</h1>
+<div class="container">
+  <h1>Create a new vehicle</h1>
+    <div class="form">
 
-  <%= simple_form_for @vehicle do |f| %>
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-    <%= f.input :name %>
-    <%= f.input :category, collection: %w[bike wheelbarrow scooter skateboard animal roller fantasy other] %>
-    <%= f.input :description %>
-    <%= f.input :price %>
-    <%= f.input :location, input_html: { id: :autocompletion } %>
-    <%= f.input :image %>
-    <%= f.input :image_cache, as: :hidden %>
-    <%= f.button :submit %>
-  <% end %>
-  <hr>
-  <%= link_to 'Back', owner_dashboard_path %>
+    <%= simple_form_for @vehicle do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= f.input :name,
+                  class: "form-controlform-text text-muted"%>
+      <%= f.input :category,
+                  collection: %w[bike wheelbarrow scooter skateboard animal roller fantasy other],
+                  class: "form-controlform-text text-muted" %>
+      <%= f.input :description,
+                  class: "form-controlform-text text-muted" %>
+      <%= f.input :price,
+                  class: "form-controlform-text text-muted" %>
+      <%= f.input :location,
+                  input_html: { id: :autocompletion },
+                  class: "form-controlform-text text-muted" %>
+      <%= f.input :image,
+                  class: "form-controlform-text text-muted" %>
+      <%= f.input :image_cache,
+                  as: :hidden,
+                  class: "form-controlform-text text-muted" %>
+      <%= f.button :submit, class: "btn btn-primary"  %>
+    <% end %>
+    </div>
+    <hr>
+    <%= link_to 'Back', owner_dashboard_path %>
+</div>
