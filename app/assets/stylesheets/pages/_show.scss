@@ -54,6 +54,7 @@
 .bloc-vehicle1 {
   position: relative;
   width: 50vw;
+  margin-right: 10px;
   .show-button-modal {
   position: absolute;
   right: 10px;
@@ -67,9 +68,12 @@
   width: 50vw;
   padding-bottom: 1%
 }
+.reviews {
+  margin-left: 40px;
+}
 .review {
   display: flex;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid grey;
 }
 .review-description {
   flex-grow: 1;
@@ -84,7 +88,7 @@
 
 .user-show-review {
   margin-left: 100px;
-  margin-bottom: 15px;
+  margin-bottom: 80px;
   background-size: cover;
   height: 40px;
   width: 40px;
