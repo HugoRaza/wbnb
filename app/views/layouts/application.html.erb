@@ -42,29 +42,13 @@
           <% end %>
         </div>
       </div>
-
-      <!-- displayed on phone / tablet -->
-      <!-- <div class="navbar-lewagon-actions d-block d-sm-none">
-        <div class="dropdown">
-          <i class="fas fa-bars" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false"></i>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <a href="#" class="dropdown-item"><i class="fas fa-home"></i> Browse flats</a>
-            <a href="#" class="dropdown-item"><i class="fas fa-comments"></i> Messages <span
-                class="badge badge-pill badge-secondary text-white">5</span></a>
-            <a class="dropdown-item" href="#"><i class="fas fa-user"></i> Account</a>
-            <a class="dropdown-item" href="#"><i class="fas fa-cogs"></i> Settings</a>
-            <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Log out</a>
-          </div>
-        </div>
-      </div> -->
     </div>
     <div class="main">
       <% if notice %>
-        <p class="notice"><%= notice %></p>
+        <p class="alert alert-info"><%= notice %></p>
       <% end %>
       <% if alert %>
-        <p class="alert"><%= alert %></p>
+        <p class="alert alert-warning"><%= alert %></p>
       <% end %>
 
       <%= yield %>
