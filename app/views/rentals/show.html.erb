@@ -53,7 +53,9 @@
 
       <% else %>
         <strong>You already left a review!</strong><br><br>
-        <%= @rental.vehicle_review.rating %><i class="fas fa-star"></i> - <%= @rental.vehicle_review.description %>
+        <div class="speech-bubble">
+          <%= @rental.vehicle_review.rating %><i class="fas fa-star"></i> - <%= @rental.vehicle_review.description %>
+        </div>
       <% end %>
     </div>
   </div>
