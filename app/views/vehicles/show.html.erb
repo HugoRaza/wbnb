@@ -39,7 +39,6 @@
           <p><%= "#{review.rental.user.first_name} #{review.rental.user.last_name}" %></p>
           <% img_url = review.rental.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
           <div class="user-show-review"> <%= image_tag img_url, class: "avatar-large", crop: :fill  %></div>
-          <hr>
 
           <div class="review-description">
             <h2>description</h2>
@@ -69,11 +68,12 @@
     </div>
   </div>
 </div>
-  <% unless @vehicle.user == current_user %>
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-      Ask for rental!
-    </button>
-
+  <div class="show-button-modal">
+    <% unless @vehicle.user == current_user %>
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        Ask for rental!
+      </button>
+  </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">

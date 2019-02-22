@@ -21,11 +21,13 @@
 .show-rating1 {
   display: flex;
   color: white;
+  font-size: 25px;
   position: absolute;
   top: 5px;
   left: 10px;
   .rating1 {
     color: yellow;
+
   }
 }
 
@@ -57,7 +59,7 @@
   height: 40px;
   width: 40px;
 }
-.show-rating {
+.show-rating2 {
   position: relative;
   display: flex;
   align-text: center;
@@ -71,4 +73,11 @@
 }
 .review-description {
   margin-top: 40px;
+}
+.review-description h2 {
+  margin-top: 80px;
+}
+
+.show-button-modal {
+
 }
