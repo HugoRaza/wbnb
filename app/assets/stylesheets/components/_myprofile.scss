@@ -1,0 +1,34 @@
+.user-img-size {
+  width: 200px;
+  height: 200px;
+  padding: 3px;
+  border-radius: 10px;
+  background-color: #3c415e;
+}
+
+
+.user-total {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0;
+  color: #3c415e;
+}
+
+
+.info-user {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+
+.edit {
+  font-size: 15px;
+}
+
+.rentals-info {
+text-align: left;
+width: 400px;
+margin: 10px auto;
+color: #3c415e;
+}
