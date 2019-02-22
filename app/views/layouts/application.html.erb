@@ -22,16 +22,20 @@
       <div class="navbar-lewagon-actions d-none d-sm-flex">
 
         <% if user_signed_in? %>
-          <a href="/owner_dashboard" class="navbar-lewagon-link">My wheelbarrows</a>
+          <a href="/owner_dashboard" id="nav-link" class="navbar-lewagon-link">My wheelbarrows</a>
           <div class="badge-container">
-            <a href="/rentals" class="navbar-lewagon-link">My Rides</a>
+            <a href="/rentals" id="nav-link" class="navbar-lewagon-link">My Rides</a>
           </div>
           <div class="dropdown">
             <% img_url = current_user.profile_picture.url || image_path("profile_pic_default.jpg") %>
             <%= image_tag img_url, class: "avatar dropdown-toggle", id: "dropdownMenuButton", "data-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false"%>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <i class="fas fa-user-circle"></i> <%= link_to "My Profile", my_profile_path, class: "dropdown-item"  %>
-              <i class="fas fa-sign-out-alt"></i> <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item"  %>
+            <div class="dropdown-menu" id= "drop-list" aria-labelledby="dropdownMenuButton">
+              <div class="item1-list">
+                <p><i class="fas fa-user-circle"></i> <%= link_to "My Profile", my_profile_path, class: "dropdown-item"  %></p>
+              </div>
+              <div class="item2-list">
+                <p><i class="fas fa-sign-out-alt"></i> <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item"  %></p>
+              </div>
             </div>
           <% else %>
             <%= link_to "Login", new_user_session_path, class: "navbar-lewagon-link" %>

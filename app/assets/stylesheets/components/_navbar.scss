@@ -14,6 +14,12 @@
 
 .navbar-lewagon .brand {
   width: 40px;
+  color: #3c415e;
+  margin-left: 50px;
+}
+
+.brand:hover {
+  width: 38px;
 }
 
 .navbar-lewagon .navbar-lewagon-actions {
@@ -37,4 +43,40 @@
 
 .navbar-lewagon .dropdown-toggle {
   cursor: pointer;
+}
+
+#nav-link {
+  font-weight: lighter;
+  color: #3c415e;
+  padding: 3px;
+}
+
+#nav-link:hover {
+  font-weight: normal;
+  border-bottom: 0.2px solid #3c415e;
+  border-top: 0.2px solid #3c415e;
+}
+
+#drop-list p {
+  font-size: 15px;
+  font-weight: lighter;
+  color: #3c415e;
+  a {
+    color: #3c415e;
+    text-decoration: none;
+  }
+  a:hover {
+    color: white;
+  }
+}
+
+#drop-list p:hover {
+    background-color: #3c415e;
+    color: white;
+    font-weight: bold;
+
+}
+
+.dropdown {
+  margin-right: 50px;
 }
