@@ -2,7 +2,7 @@
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), image_url("wheelbarrow-banner.jpg");
   background-size: cover;
   background-position: center;
-  padding-top: 180px;
+  padding-top: 256px;
   height: 100vh;
   margin-top: -73px;
   position: relative;
@@ -34,16 +34,26 @@
   animation: wave 2s ease infinite;
 }
 
+.chevron:hover {
+  font-size: 60px;
+  color: white;
+}
+
+.dark {
+  position: absolute;
+  color: #555;
+}
+
+.dark:hover {
+  color: #333;
+}
+
 @keyframes wave{
      from {opacity: 1;}
      50%  {opacity: 0.5;}
      to   {opacity: 1;}
 }
 
-.chevron:hover {
-  font-size: 60px;
-  color: white;
-}
 
 .bottom-div {
   position: absolute;

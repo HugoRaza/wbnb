@@ -1,34 +1,37 @@
-<%= link_to "Back to index", vehicles_path %>
 <br>
-<br>
-
-<div class="flex-show">
-  <div class="card-show-vehicle" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @vehicle.image %>);">
-    <div class="card-info">
-      <div class="show-rating">
-        <%= "#{@vehicle.vehicle_reviews.average(:rating).round(1)}" %>
-        <div class="rating1"> <i class="fas fa-star"></i> </div>
-      </div>
-      <%= cl_image_tag @vehicle.user.profile_picture, class: "avatar-bordered position" %>
-      <p> <strong> <%= "#{@vehicle.user.first_name} #{@vehicle.user.last_name}" %> </strong></p>
-      <div class="vehicule-show-name"><%= @vehicle.name %></div>
-    </div>
-  </div>
-</div>
 
 <div class="container">
+  <%= link_to vehicles_path do %>
+    <i class="fas fa-chevron-left chevron dark"></i>
+  <% end %>
+
+  <div class="flex-show">
+    <div class="card-show-vehicle" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @vehicle.image %>);">
+      <div class="card-info">
+        <div class="show-rating">
+          <% unless @vehicle.vehicle_reviews.empty? %>
+            <%= @vehicle.vehicle_reviews.average(:rating).round(1) %>
+            <div class="rating1"> <i class="fas fa-star"></i></div>
+          <% end %>
+        </div>
+        <%= cl_image_tag @vehicle.user.profile_picture, class: "avatar-bordered position" %>
+        <p> <strong> <%= "#{@vehicle.user.first_name} #{@vehicle.user.last_name}" %> </strong></p>
+        <div class="vehicule-show-name"><%= @vehicle.name %></div>
+      </div>
+    </div>
+  </div>
 
   <div class="bloc-vehicles">
 
     <div class="bloc-vehicle1">
       <div class="vehicle-description">
-        <h2>Description</h2>
+        <h3>Description</h3>
         <p> <%= @vehicle.description %> </p>
-        <h2>Category</h2>
+        <h3>Category</h3>
         <p> <%= @vehicle.category %> </p>
-        <h2>Location owner</h2>
+        <h3>Location owner</h3>
         <p> <%= @vehicle.location %> </p>
-        <h2>Price</h2>
+        <h3>Price</h3>
         <p> <%= "#{@vehicle.price} €" %> </p>
       </div>
       <!-- modal button -->
@@ -37,6 +40,7 @@
           <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
             Ask for rental!
           </button>
+        <% end %>
       </div>
     </div>
 
@@ -48,7 +52,7 @@
             <div class="review-rating">
               <div class="rating2">
                 <%= review.rating %>
-              <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
               </div>
             </div>
 
@@ -60,23 +64,17 @@
               <div class="user-show-review"> <%= image_tag img_url, class: "avatar-large ", crop: :fill  %>
               </div>
             </div>
-
             <!-- user comment -->
             <div class="review-description">
-              <h2>comment</h2>
+              <h3>Comment</h3>
               <p><%= review.description %></p>
             </div>
-
             <!-- user rating -->
           </div>
-
         <% end %>
       </div>
-
     </div>
-
   </div>
-
 </div>
 
 
@@ -104,4 +102,3 @@
   </div>
 </div>
 
-<% end %>
