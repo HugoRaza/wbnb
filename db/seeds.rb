@@ -131,7 +131,7 @@ vehicle_attributes << {
   description: Faker::ChuckNorris.fact.gsub("Chuck Norris", "Wheelbarrow"),
   remote_image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNdMtf1hGSss87AEqnbg-O6U07PfXk53KF6i3LO4nto6ffhMQX",
   price: rand(1..100),
-  location: "Macon",
+  location: "Toulouse",
   user_id: id
 }
 id += 1
