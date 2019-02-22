@@ -32,7 +32,7 @@
             </div>
       </div>
 
-        <% @user.vehicle_rentals.each do |rental| %>
+        <% @user.vehicle_rentals.order(start_date: :asc).each do |rental| %>
           <div class="reservation">
             <div id="avatar-image">
             <% img_url = rental.user.profile_picture.url || image_path("profile_pic_default.jpg") %>
