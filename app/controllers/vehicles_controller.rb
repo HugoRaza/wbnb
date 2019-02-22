@@ -41,8 +41,8 @@ class VehiclesController < ApplicationController
   end
 
   def index
-    if params[:query].present?
-      @vehicles = Vehicle.search_by_name_category_description_and_location(params[:query])
+    if params[:term].present?
+      @vehicles = Vehicle.search_by_name_category_description_and_location(params[:term])
     else
       @vehicles = Vehicle.all
     end
@@ -59,6 +59,6 @@ class VehiclesController < ApplicationController
   private
 
   def vehicle_params
-    params.require(:vehicle).permit(:name, :category, :description, :price, :location, :image, :query)
+    params.require(:vehicle).permit(:name, :category, :description, :price, :location, :image, :term)
   end
 end
